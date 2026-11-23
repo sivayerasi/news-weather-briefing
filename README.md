@@ -6,6 +6,10 @@ Spec: [`docs/project-spec.md`](docs/project-spec.md) · Owner: Siva Yerasi
 
 ## How it works
 
+![Architecture](docs/diagrams/architecture.png)
+
+The same picture as a GitHub-rendered diagram:
+
 ```mermaid
 flowchart LR
     U[Browser: index.html] -->|GET /, POST /preview, POST /settings| API[API Gateway HTTP API]
@@ -27,6 +31,10 @@ One Lambda (Python 3.13) runs a single-agent loop with Bedrock `converse()`. Cla
 | `filter_by_interest(items, interests)` | Keeps items that match an interest | Keyword match |
 
 Then Claude writes the briefing: a greeting, a weather paragraph, and a news section with one heading per interest.
+
+Inside one run, the Lambda code and the AI take turns. The AI asks for a tool, the code runs it and sends the result back, and this repeats (at most 6 rounds) until the AI writes the briefing:
+
+![Agent loop](docs/diagrams/agent-loop.png)
 
 **Behavior worth knowing**
 - **City lookup:** Open-Meteo first, then OpenStreetMap Nominatim for spellings it misses (for example Tadipatri is stored as Tadpatri).
@@ -99,7 +107,7 @@ lambda/briefing/           Lambda code
   store.py                   DynamoDB settings and audit log
   index.html                 the web page (plain HTML, CSS and JavaScript)
 tests/test_briefing.py     40 unit tests (no AWS needed)
-docs/                      project spec, sample audit log, screenshots
+docs/                      project spec, sample audit log, screenshots, diagrams (PNG + SVG)
 ```
 
 ## Run the tests
