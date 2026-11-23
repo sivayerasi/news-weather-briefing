@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Briefing</title>
+<style>
+  :root {
+    --bg: #eef2f9; --card: #ffffff; --text: #1d2433; --muted: #6a7488;
+    --primary: #3b5bdb; --primary-dark: #2f49b0; --border: #dbe1ee;
+    --ok: #1b7f3b; --bad: #c0233a; --soft: #f5f7fc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; color: var(--text); background: var(--bg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  header {
+    background: linear-gradient(135deg, #3b5bdb 0%, #6741d9 100%);
+    color: #fff; padding: 2.2rem 1rem 4.5rem; text-align: center;
+  }
+  header h1 { margin: 0 0 .3rem; font-size: 1.9rem; letter-spacing: -.01em; }
+  header p { margin: 0; opacity: .9; }
+  main { max-width: 680px; margin: -3rem auto 3rem; padding: 0 1rem; }
+  .card {
+    background: var(--card); border-radius: 14px; padding: 1.5rem;
+    box-shadow: 0 8px 28px rgba(30, 40, 90, .12); margin-bottom: 1.25rem;
+  }
+  label { display: block; margin: 1rem 0 .3rem; font-weight: 600; font-size: .92rem; }
+  label:first-of-type { margin-top: 0; }
+  .hint { font-weight: 400; color: var(--muted); font-size: .82rem; }
+  input[type=text], input[type=email] {
+    width: 100%; padding: .7rem .8rem; font-size: 1rem; color: var(--text);
+    border: 1px solid var(--border); border-radius: 9px; background: #fff;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59, 91, 219, .18); }
+  .row { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.4rem; }
+  button {
+    flex: 1 1 180px; padding: .8rem 1rem; font-size: 1rem; font-weight: 600;
+    border-radius: 9px; cursor: pointer; border: 1px solid transparent;
+    transition: background .15s, transform .05s;
+  }
+  button:active { transform: translateY(1px); }
+  button:disabled { opacity: .6; cursor: wait; }
+  .primary { background: var(--primary); color: #fff; }
+  .primary:hover:not(:disabled) { background: var(--primary-dark); }
+  .secondary { background: #fff; color: var(--primary); border-color: var(--primary); }
+  .secondary:hover:not(:disabled) { background: var(--soft); }
+  .tip {
+    margin-top: .4rem; padding: .5rem .7rem; font-size: .85rem; color: #8a5a00;
+    background: #fff6e0; border: 1px solid #f1d28a; border-radius: 8px;
+  }
+  .demo {
+    margin-top: 1.2rem; padding: .7rem .9rem; background: var(--soft);
+    border-radius: 9px; font-size: .88rem; color: var(--muted);
+  }
+  .demo label { display: inline; margin: 0 0 0 .8rem; font-weight: 500; color: var(--text); font-size: .88rem; }
+  .demo input { margin-right: .3rem; }
+  #status { min-height: 1.4rem; margin: 0 0 1rem; font-weight: 600; }
+  #status.err { color: var(--bad); }
+  #status.good { color: var(--ok); }
+  .spinner {
+    display: inline-block; width: 1em; height: 1em; margin-right: .5em; vertical-align: -.15em;
+    border: 2px solid var(--border); border-top-color: var(--primary); border-radius: 50%;
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #result h2 { margin: 0 0 .6rem; font-size: 1.15rem; }
+  #brief p { margin: .6rem 0; }
+  #brief .section { margin: 1.1rem 0 .2rem; font-weight: 700; color: var(--primary-dark); }
+  #brief ul { margin: .2rem 0 .4rem; padding-left: 1.2rem; }
+  #brief li { margin: .35rem 0; }
+  details { margin-top: 1.2rem; border-top: 1px solid var(--border); padding-top: .9rem; font-size: .92rem; }
+  summary { cursor: pointer; font-weight: 600; color: var(--muted); }
+  #run { list-style: none; padding: 0; margin: .7rem 0 0; }
+  #run li { margin: .3rem 0; }
+  .ok { color: var(--ok); font-weight: 700; } .bad { color: var(--bad); font-weight: 700; }
+  footer { text-align: center; color: var(--muted); font-size: .8rem; padding-bottom: 2rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Daily News + Weather Briefing</h1>
+  <p>Your local weather and the news you care about, in one short email.</p>
+</header>
+<main>
+  <form id="f" class="card" onsubmit="return false">
+    <label for="city">City</label>
+    <input type="text" id="city" required maxlength="80" placeholder="e.g. Hyderabad" autocomplete="off">
+
+    <label for="interests">Interests <span class="hint">(separate with commas)</span></label>
+    <input type="text" id="interests" required placeholder="e.g. stocks, technology, cricket" autocomplete="off">
+    <div id="tip" class="tip" hidden>Separate interests with commas, for example <b>stocks, technology</b>. Without a comma this counts as one interest.</div>
+
+    <label for="email">Email <span class="hint">(for the daily briefing)</span></label>
+    <input type="email" id="email" placeholder="you@example.com">
+
+    <div class="demo">
+      Demo: simulate a dead source
+      <label><input type="checkbox" id="failw">weather</label>
+      <label><input type="checkbox" id="failn">news</label>
+    </div>
+
+    <div class="row">
+      <button type="button" id="preview" class="primary">Preview now</button>
+      <button type="button" id="save" class="secondary">Save for daily email</button>
+    </div>
+  </form>
+
+  <p id="status" role="status"></p>
+
+  <section id="result" class="card" hidden>
+    <h2>Your briefing</h2>
+    <div id="brief"></div>
+    <details id="details" hidden>
+      <summary>Run details</summary>
+      <ul id="run"></ul>
+    </details>
+  </section>
+</main>
+<footer>Unauthenticated demo. Briefings are written by Claude on AWS Bedrock.</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+function payload() {
+  const fail = [];
+  if ($("failw").checked) fail.push("weather");
+  if ($("failn").checked) fail.push("news");
+  return { city: $("city").value, interests: $("interests").value, email: $("email").value, simulate_failure: fail };
+}
+
+// Warn when several words are typed with no comma (they would count as one interest).
+$("interests").addEventListener("input", () => {
+  const v = $("interests").value.trim();
+  $("tip").hidden = !(v.includes(" ") && !v.includes(","));
+});
+
+function setBusy(busy) { $("preview").disabled = busy; $("save").disabled = busy; }
+
+function setStatus(text, kind, spinner) {
+  const s = $("status");
+  s.className = kind || "";
+  s.textContent = "";
+  if (spinner) { const sp = document.createElement("span"); sp.className = "spinner"; s.appendChild(sp); }
+  s.appendChild(document.createTextNode(text));
+}
+
+async function post(path, busyText) {
+  setBusy(true); setStatus(busyText, "", true);
+  try {
+    const r = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload()) });
+    const data = await r.json();
+    if (!r.ok) { setStatus(data.error || "Request failed", "err"); return null; }
+    setStatus("", "");
+    return data;
+  } catch (e) {
+    setStatus("Network error. Please try again.", "err"); return null;
+  } finally { setBusy(false); }
+}
+
+// Builds the briefing with DOM nodes and textContent only (no innerHTML), so model output cannot inject markup.
+function renderBriefing(text) {
+  const root = $("brief"); root.innerHTML = "";
+  let list = null;
+  for (const raw of text.split("\n")) {
+    const line = raw.trim();
+    if (line.startsWith("- ")) {
+      if (!list) { list = document.createElement("ul"); root.appendChild(list); }
+      const li = document.createElement("li"); li.textContent = line.slice(2); list.appendChild(li);
+      continue;
+    }
+    if (!line) continue;
+    list = null;
+    const p = document.createElement("p");
+    if (line.endsWith(":") && line.length <= 40) {
+      p.className = "section"; p.textContent = line.slice(0, -1);
+    } else if (line.indexOf(":") > 0 && line.indexOf(":") <= 12) {
+      const i = line.indexOf(":");
+      const b = document.createElement("strong"); b.textContent = line.slice(0, i + 1);
+      p.appendChild(b); p.appendChild(document.createTextNode(line.slice(i + 1)));
+    } else { p.textContent = line; }
+    root.appendChild(p);
+  }
+}
+
+function addRow(parts) {
+  const li = document.createElement("li");
+  for (const [cls, txt] of parts) {
+    const span = document.createElement("span"); if (cls) span.className = cls; span.textContent = txt; li.appendChild(span);
+  }
+  $("run").appendChild(li);
+}
+
+function showDetails(d) {
+  $("run").innerHTML = "";
+  (d.sources || []).forEach(s => addRow(s.ok
+    ? [["ok", "\u2713 "], ["", s.tool]]
+    : [["bad", "\u2717 "], ["", s.tool + " (failed, skipped)"]]));
+  addRow([["", "News items kept: " + (Number(d.items_kept) || 0)]]);
+  addRow([["", "Agent steps: " + (Number(d.iterations) || 0)]]);
+  addRow(d.gaps && d.gaps.length
+    ? [["bad", "Unavailable today: " + d.gaps.join(", ")]]
+    : [["ok", "All sources worked"]]);
+  $("details").hidden = false;
+}
+
+$("preview").onclick = async () => {
+  $("result").hidden = true;
+  const d = await post("/preview", "Writing your briefing (about 10 seconds)...");
+  if (d) { renderBriefing(d.briefing); showDetails(d); $("result").hidden = false; $("result").scrollIntoView({ behavior: "smooth" }); }
+};
+
+$("save").onclick = async () => {
+  const d = await post("/settings", "Saving...");
+  if (d) setStatus("Saved. Your briefing will be emailed every morning.", "good");
+};
+</script>
+</body>
+</html>

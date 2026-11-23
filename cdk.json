@@ -1,0 +1,8 @@
+{
+  "app": ".venv/bin/python app.py",
+  "context": {
+    "sender_email": "sivayerasi2@gmail.com",
+    "schedule_hour_utc": 1,
+    "schedule_minute_utc": 30
+  }
+}

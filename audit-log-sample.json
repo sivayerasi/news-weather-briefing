@@ -1,0 +1,29 @@
+{
+  "gaps": [],
+  "city": "kurnool",
+  "items_kept": 6,
+  "trigger": "scheduled",
+  "briefing": "Good morning from Kurnool — here is your Monday briefing for 23 November 2026.\n\nWeather: Currently mainly clear at 28.4 C with light winds. Today's high is 33.2 C, low 23.2 C, with no rain expected — enjoy the dry day before drizzle moves in tomorrow (65% chance) and Wednesday (73% chance).\n\nNews:\n\nStocks:\n- Asian stock markets tumbled as fears of an AI bubble weighed on investor sentiment.\n- U.S. stocks closed mostly lower after Nvidia's earnings failed to calm market nerves.\n- U.S. futures bounced modestly even as an AI-driven rout continued to rattle Asian markets.\n\nTechnology:\n- L&T Technology Services launched SDVault.ai, a new platform aimed at software-defined vehicles.\n- Bill Gates visited Andhra Pradesh to discuss the role of technology in governance and public health.\n- A new EY report explores how businesses can unlock stronger returns on AI investments in the tech sector.",
+  "interests": [
+    "stocks",
+    "technology"
+  ],
+  "sources": [
+    {
+      "ok": true,
+      "tool": "get_weather"
+    },
+    {
+      "ok": true,
+      "tool": "get_news"
+    },
+    {
+      "ok": true,
+      "tool": "filter_by_interest"
+    }
+  ],
+  "iterations": 3,
+  "pk": "USER#s***@gmail.com",
+  "email_status": "sent",
+  "sk": "AUDIT#2026-11-23T04:07:03.025338+00:00"
+}
