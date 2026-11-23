@@ -5,6 +5,7 @@ Each tool returns a plain dict. On failure a tool returns
 skip the source and still produce a briefing.
 """
 import json
+import time
 import urllib.parse
 import urllib.request
 from email.utils import parsedate_to_datetime
@@ -27,6 +28,8 @@ WEATHER_CODES = {
 NEWS_URL = "https://news.google.com/rss/search"
 MAX_TOPICS = 5
 ITEMS_PER_TOPIC = 3
+NEWS_ATTEMPTS = 2
+NEWS_RETRY_DELAY = 0.7
 MAX_RESPONSE_BYTES = 1_000_000
 
 
@@ -146,6 +149,26 @@ def get_weather(city, fail=False, ctx=None):
         return {"unavailable": True, "error": f"weather lookup failed: {type(exc).__name__}"}
 
 
+def _fetch_topic(topic, cc_edition):
+    """Headlines for one topic. Tries the regional edition, then US; if both
+    fail or are empty, waits briefly and tries again (feeds are occasionally
+    empty for a moment). Returns (items, had_error)."""
+    had_error = False
+    for attempt in range(NEWS_ATTEMPTS):
+        if attempt:
+            time.sleep(NEWS_RETRY_DELAY)
+        for cc in dict.fromkeys([cc_edition, "US"]):
+            try:
+                xml_text = _http_text(NEWS_URL, {"q": f"{topic} when:1d", "hl": f"en-{cc}", "gl": cc, "ceid": f"{cc}:en"})
+                found = _parse_rss(xml_text, topic, ITEMS_PER_TOPIC)
+            except Exception:
+                had_error = True
+                continue
+            if found:
+                return found, had_error
+    return [], had_error
+
+
 def get_news(topics, fail=False, country_code=""):
     """Recent headlines for each topic (Google News RSS, no API key), newest first.
 
@@ -159,19 +182,12 @@ def get_news(topics, fail=False, country_code=""):
     cc_edition = country_code.upper() if len(country_code) == 2 and country_code.isalpha() else "US"
     items, seen, errors = [], set(), 0
     for topic in topics:
-        try:
-            found = []
-            for cc in dict.fromkeys([cc_edition, "US"]):  # regional edition, then US if empty
-                xml_text = _http_text(NEWS_URL, {"q": f"{topic} when:1d", "hl": f"en-{cc}", "gl": cc, "ceid": f"{cc}:en"})
-                found = _parse_rss(xml_text, topic, ITEMS_PER_TOPIC)
-                if found:
-                    break
-            for item in found:
-                if item["title"] not in seen:
-                    seen.add(item["title"])
-                    items.append(item)
-        except Exception:
-            errors += 1  # one bad topic must not sink the rest
+        found, had_error = _fetch_topic(topic, cc_edition)  # one bad topic must not sink the rest
+        errors += had_error and not found
+        for item in found:
+            if item["title"] not in seen:
+                seen.add(item["title"])
+                items.append(item)
     if not items:
         return {"unavailable": True, "error": "news lookup failed" if errors else "no recent news found"}
     items.sort(key=_published_ts, reverse=True)

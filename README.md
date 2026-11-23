@@ -20,6 +20,7 @@ One Lambda runs a single-agent loop. Claude calls three tools: `get_weather` (Op
 
 - **City lookup:** Open-Meteo first, then OpenStreetMap Nominatim for spellings it misses (for example Tadipatri).
 - **News edition:** chosen from the city's country (India city gets the India edition), falling back to the US edition.
+- **News retry:** if a topic's feed fails or comes back empty, it is retried once after a short pause before giving up on that topic.
 - **Interests:** separate with commas. Words without a comma count as one interest, so `stock market` stays one interest.
 - **Email:** sent as HTML (headings and bullets) with a plain-text fallback.
 

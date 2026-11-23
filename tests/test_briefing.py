@@ -14,6 +14,8 @@ SAMPLE_NEWS = [
     {"title": "Central bank holds rates", "source": "Finance", "published": "", "tags": ["finance"]},
 ]
 
+EMPTY_FEED = "<rss><channel></channel></rss>"
+
 SAMPLE_RSS = """<?xml version="1.0"?><rss><channel>
 <item><title>Chip startup raises funds - TechDaily</title><source>TechDaily</source><pubDate>Sun, 22 Nov 2026 08:00:00 GMT</pubDate></item>
 <item><title>Second story - Wire</title><source>Wire</source></item>
@@ -52,6 +54,7 @@ class FakeBedrock:
 
 @pytest.fixture(autouse=True)
 def no_network(monkeypatch):
+    monkeypatch.setattr(tools.time, "sleep", lambda s: None)
     """Weather is offline by default; news returns a sample RSS feed."""
     monkeypatch.setattr(tools, "_http_json", lambda url, params: (_ for _ in ()).throw(OSError("offline")))
     monkeypatch.setattr(tools, "_http_text", lambda url, params: SAMPLE_RSS)
@@ -309,3 +312,42 @@ def test_to_html_lists_and_escaping():
     out = handler.to_html("Good morning!\n\nWeather: sunny <b>\n\nNews:\n\nStocks:\n- one & two\n\n- three\n\nTechnology:\n- four")
     assert out.count("<ul") == 2 and out.count("<li") == 3  # blank line inside a list does not split it
     assert "&amp;" in out and "&lt;b&gt;" in out and "<b>Stocks:</b>" in out and "<b>Weather:</b>" in out
+
+
+def test_news_retries_after_empty_result(monkeypatch):
+    calls = []
+
+    def flaky(url, params):
+        calls.append(params["gl"])
+        return EMPTY_FEED if len(calls) <= 2 else SAMPLE_RSS  # first attempt (IN, US) empty
+    monkeypatch.setattr(tools, "_http_text", flaky)
+    out = tools.get_news(["stocks"], country_code="IN")
+    assert out["items"] and calls == ["IN", "US", "IN"]
+
+
+def test_news_retries_after_error_then_succeeds(monkeypatch):
+    calls = []
+
+    def flaky(url, params):
+        calls.append(1)
+        if len(calls) <= 2:
+            raise OSError("blip")
+        return SAMPLE_RSS
+    monkeypatch.setattr(tools, "_http_text", flaky)
+    assert tools.get_news(["stocks"], country_code="IN")["items"]  # IN and US fail, retry succeeds
+
+
+def test_news_gives_up_after_two_attempts(monkeypatch):
+    calls = []
+    monkeypatch.setattr(tools, "_http_text", lambda url, params: calls.append(1) or EMPTY_FEED)
+    out = tools.get_news(["stocks"], country_code="IN")
+    assert out["unavailable"] is True and len(calls) == 4  # 2 attempts x 2 editions
+
+
+def test_news_us_edition_used_when_regional_request_errors(monkeypatch):
+    def fake(url, params):
+        if params["gl"] == "IN":
+            raise OSError("down")
+        return SAMPLE_RSS
+    monkeypatch.setattr(tools, "_http_text", fake)
+    assert tools.get_news(["stocks"], country_code="IN")["items"]
