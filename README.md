@@ -60,7 +60,6 @@ lambda/briefing/           Lambda code
   store.py                   DynamoDB settings and audit log
   index.html                 the web page
 tests/test_briefing.py     unit tests (no AWS needed)
-scripts/local_server.py    run the page locally on http://localhost:8000
 docs/                      project spec, sample audit log, screenshots
 ```
 
@@ -70,14 +69,6 @@ docs/                      project spec, sample audit log, screenshots
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m pytest -q tests
 ```
-
-## Run locally
-
-```
-AWS_PROFILE=<profile> .venv/bin/python scripts/local_server.py
-```
-
-Uses real Bedrock and weather/news. DynamoDB and SES are replaced by in-memory stand-ins, so nothing is written to AWS and no email is sent.
 
 ## Deploy
 
