@@ -1,4 +1,4 @@
-"""Run the app locally: python local_server.py  ->  http://localhost:8000
+"""Run the app locally: python scripts/local_server.py  ->  http://localhost:8000
 
 Uses real Bedrock and Open-Meteo (needs AWS_PROFILE). DynamoDB and SES are
 replaced with in-memory/console stand-ins, so nothing is written to AWS.
@@ -16,7 +16,7 @@ try:  # python.org builds of Python on macOS lack root certificates
 except ImportError:
     pass
 
-sys.path.insert(0, str(Path(__file__).parent / "lambda" / "briefing"))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "lambda" / "briefing"))
 import handler  # noqa: E402
 import store  # noqa: E402
 

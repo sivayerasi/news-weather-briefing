@@ -1,15 +1,11 @@
 import json
-import sys
-from pathlib import Path
 
 import pytest
 
-sys.path.insert(0, str(Path(__file__).parent.parent / "lambda" / "briefing"))
-
-import agent  # noqa: E402
-import guardrails  # noqa: E402
-import handler  # noqa: E402
-import tools  # noqa: E402
+import agent
+import guardrails
+import handler
+import tools
 
 
 SAMPLE_NEWS = [

@@ -1,6 +1,6 @@
 # Daily News + Weather Briefing
 
-An AWS agent that emails a short morning briefing (local weather plus news on your interests, grouped by interest). A web page has a "Preview now" button that shows the briefing right away, with a "Run details" box (tools used, items kept, skipped sources). Spec: `mini-project-08-news-weather-briefing.md`.
+An AWS agent that emails a short morning briefing (local weather plus news on your interests, grouped by interest). A web page has a "Preview now" button that shows the briefing right away, with a "Run details" box (tools used, items kept, skipped sources). Spec: `docs/project-spec.md`.
 
 ## Architecture
 
@@ -33,7 +33,7 @@ One Lambda runs a single-agent loop. Claude calls three tools: `get_weather` (Op
 | Output guardrail | `scrub_output` redacts credential-like strings |
 | Audit log | Each run writes sources, items kept, gaps and the briefing to DynamoDB (90-day TTL) |
 
-Sample record: `audit-log-sample.json` (one real scheduled run, email address masked).
+Sample record: `docs/audit-log-sample.json` (one real scheduled run, email address masked).
 
 Demo a dead source: tick "weather" or "news" under "simulate a dead source" on the page, then press Preview.
 
@@ -50,9 +50,18 @@ Weather source skipped (simulated). The briefing still arrives with "Weather una
 ## Layout
 
 ```
-app.py, cdk.json, infra/stack.py   CDK app (Python)
-lambda/briefing/                   handler, agent, tools, guardrails, store, index.html
-tests/                             unit tests (no AWS needed)
+app.py, cdk.json           CDK entry point and settings (sender email, schedule time)
+infra/stack.py             AWS resources (Lambda, API, DynamoDB, EventBridge, IAM)
+lambda/briefing/           Lambda code
+  handler.py                 routes, email sending (HTML + text)
+  agent.py                   Bedrock converse() tool-use loop
+  tools.py                   get_weather, get_news, filter_by_interest
+  guardrails.py              input validation, output scrubbing
+  store.py                   DynamoDB settings and audit log
+  index.html                 the web page
+tests/test_briefing.py     unit tests (no AWS needed)
+scripts/local_server.py    run the page locally on http://localhost:8000
+docs/                      project spec, sample audit log, screenshots
 ```
 
 ## Run the tests
@@ -61,6 +70,14 @@ tests/                             unit tests (no AWS needed)
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m pytest -q tests
 ```
+
+## Run locally
+
+```
+AWS_PROFILE=<profile> .venv/bin/python scripts/local_server.py
+```
+
+Uses real Bedrock and weather/news. DynamoDB and SES are replaced by in-memory stand-ins, so nothing is written to AWS and no email is sent.
 
 ## Deploy
 
