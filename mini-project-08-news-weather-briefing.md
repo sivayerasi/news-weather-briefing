@@ -111,7 +111,7 @@
 
 - [x] GitHub repo (CDK + Lambda + `index.html`)
 - [x] README as above
-- [ ] Screenshot/recording of a briefing (and one showing a skipped source)
+- [x] Screenshot/recording of a briefing (and one showing a skipped source)
 - [x] Audit log from one real run
 
 ---

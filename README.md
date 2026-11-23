@@ -37,6 +37,16 @@ Sample record: `audit-log-sample.json` (one real scheduled run, email address ma
 
 Demo a dead source: tick "weather" or "news" under "simulate a dead source" on the page, then press Preview.
 
+## Screenshots
+
+Normal briefing, all sources worked:
+
+![Normal briefing](docs/screenshots/01-normal-briefing.png)
+
+Weather source skipped (simulated). The briefing still arrives with "Weather unavailable today":
+
+![Skipped source](docs/screenshots/02-skipped-source-weather.png)
+
 ## Layout
 
 ```
