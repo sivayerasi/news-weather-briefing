@@ -47,8 +47,10 @@ def run_agent(client, city, interests, fail_sources=()):
     ctx = {}  # shared between tools within one run (e.g. country from weather)
     final_text = ""
     iterations = 0
+    stop_reason = "tool_use"  # the loop runs while the AI keeps asking for tools
 
-    for iterations in range(1, MAX_ITERATIONS + 1):
+    while stop_reason == "tool_use" and iterations < MAX_ITERATIONS:
+        iterations += 1
         resp = client.converse(
             modelId=MODEL_ID,
             system=[{"text": SYSTEM_PROMPT}],
@@ -59,7 +61,8 @@ def run_agent(client, city, interests, fail_sources=()):
         message = resp["output"]["message"]
         messages.append(message)
 
-        if resp["stopReason"] != "tool_use":
+        stop_reason = resp["stopReason"]
+        if stop_reason != "tool_use":
             final_text = _text_of(message)
             break
 
@@ -79,11 +82,9 @@ def run_agent(client, city, interests, fail_sources=()):
                 "content": [{"json": result}],
             }})
         messages.append({"role": "user", "content": results})
-    else:
-        # Hit the iteration cap without a final answer.
-        final_text = ""
 
     if not final_text:
+        # The AI never finished: either it hit the iteration cap or returned no text.
         final_text = "Today's briefing could not be completed in time."
         gaps.add("agent")
 
