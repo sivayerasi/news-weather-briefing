@@ -108,7 +108,7 @@ lambda/briefing/           Lambda code
   guardrails.py              input validation, output scrubbing
   store.py                   DynamoDB settings and audit log
 web/index.html             the web page (plain HTML, CSS and JavaScript), deployed to S3
-tests/test_briefing.py     40 unit tests (no AWS needed)
+tests/test_briefing.py     43 unit tests (no AWS needed)
 docs/                      project spec, sample audit log, screenshots, diagrams (PNG + SVG)
 ```
 
@@ -138,7 +138,7 @@ Check that everything works (no AWS needed):
 .venv/bin/python -m pytest
 ```
 
-You should see `40 passed`.
+You should see `43 passed`.
 
 ## Deploy
 
@@ -208,6 +208,7 @@ This removes every resource above, including the DynamoDB table and its saved se
 
 ## Limitations
 
+- Up to 10 interests are supported. A briefing takes about 13 seconds for 3 interests and about 18 to 22 seconds for 10, because the AI writes out every headline. API Gateway stops a request at 30 seconds, so 10 interests leave a margin of about 8 to 12 seconds.
 - The page and API have no login, so anyone with the URL can run a preview (each preview costs a small Bedrock charge). It is a demo.
 - News comes from headlines only. Google News RSS has no summaries, and a general search can return loosely related stories.
 - The daily run scans the whole table for saved settings, which is fine for a demo but not for many users.

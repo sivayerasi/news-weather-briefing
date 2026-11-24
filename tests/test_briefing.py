@@ -352,3 +352,37 @@ def test_news_us_edition_used_when_regional_request_errors(monkeypatch):
         return SAMPLE_RSS
     monkeypatch.setattr(tools, "_http_text", fake)
     assert tools.get_news(["stocks"], country_code="IN")["items"]
+
+
+class CutOffBedrock:
+    """Asks for the weather, then gets cut off mid-reply (stopReason max_tokens)."""
+
+    def __init__(self):
+        self.calls = 0
+
+    def converse(self, **kw):
+        self.calls += 1
+        if self.calls == 1:
+            msg = {"role": "assistant", "content": [{"toolUse": {"toolUseId": "t1", "name": "get_weather", "input": {"city": "Paris"}}}]}
+            return {"output": {"message": msg}, "stopReason": "tool_use"}
+        msg = {"role": "assistant", "content": [{"text": "Now I'll filter the news items by the user's interests."}]}
+        return {"output": {"message": msg}, "stopReason": "max_tokens"}
+
+
+def test_cut_off_reply_is_not_used_as_the_briefing(monkeypatch):
+    monkeypatch.setattr(tools, "get_weather", lambda city, fail=False, ctx=None: {"city": city})
+    res = agent.run_agent(CutOffBedrock(), "Paris", ["a", "b", "c", "d", "e"])
+    assert "filter the news" not in res["briefing"]
+    assert res["briefing"].startswith("Today's briefing could not be completed")
+    assert "agent" in res["gaps"]
+
+
+def test_reply_length_cap_is_large_enough_for_many_headlines():
+    assert agent.MAX_TOKENS >= 4096
+
+
+def test_news_searches_every_interest_up_to_ten(monkeypatch):
+    queries = []
+    monkeypatch.setattr(tools, "_http_text", lambda url, params: queries.append(params["q"]) or SAMPLE_RSS)
+    tools.get_news([f"topic{i}" for i in range(12)])
+    assert len(queries) == tools.MAX_TOPICS == 10

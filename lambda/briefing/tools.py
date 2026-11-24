@@ -26,7 +26,7 @@ WEATHER_CODES = {
 }
 
 NEWS_URL = "https://news.google.com/rss/search"
-MAX_TOPICS = 5
+MAX_TOPICS = 10
 ITEMS_PER_TOPIC = 3
 NEWS_ATTEMPTS = 2
 NEWS_RETRY_DELAY = 0.7

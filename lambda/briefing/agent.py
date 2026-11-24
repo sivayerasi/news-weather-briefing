@@ -7,13 +7,16 @@ from guardrails import scrub_output
 
 MODEL_ID = os.environ.get("MODEL_ID", "us.anthropic.claude-sonnet-4-6")
 MAX_ITERATIONS = int(os.environ.get("MAX_ITERATIONS", "6"))
+# Reply length cap per model call. The filter_by_interest call must write out every headline,
+# so 800 was too small for 5+ interests (the call was cut off mid-way).
+MAX_TOKENS = int(os.environ.get("MAX_TOKENS", "4096"))
 
 SYSTEM_PROMPT = """You write a short morning briefing email.
 
 Steps: call get_weather for the user's city, call get_news for the user's interests,
 call filter_by_interest on the news items, then write the briefing.
 
-Format (plain text, under 250 words):
+Format (plain text, under 250 words, or up to 450 words when there are more than 5 interests):
 - A one-line greeting.
 - "Weather": current conditions plus today's high/low and rain chance.
 - "News": one subheading per user interest, in the order the user listed them (for example
@@ -56,12 +59,16 @@ def run_agent(client, city, interests, fail_sources=()):
             system=[{"text": SYSTEM_PROMPT}],
             messages=messages,
             toolConfig={"tools": tools.TOOL_SPECS},
-            inferenceConfig={"maxTokens": 800, "temperature": 0.2},
+            inferenceConfig={"maxTokens": MAX_TOKENS, "temperature": 0.2},
         )
         message = resp["output"]["message"]
         messages.append(message)
 
         stop_reason = resp["stopReason"]
+        if stop_reason == "max_tokens":
+            # The reply was cut off. Never use half an answer as the briefing.
+            final_text = ""
+            break
         if stop_reason != "tool_use":
             final_text = _text_of(message)
             break
@@ -84,8 +91,8 @@ def run_agent(client, city, interests, fail_sources=()):
         messages.append({"role": "user", "content": results})
 
     if not final_text:
-        # The AI never finished: either it hit the iteration cap or returned no text.
-        final_text = "Today's briefing could not be completed in time."
+        # The AI never finished: it hit the iteration cap, was cut off, or returned no text.
+        final_text = "Today's briefing could not be completed."
         gaps.add("agent")
 
     final_text = _enforce_gap_notes(_clean(final_text), gaps)
