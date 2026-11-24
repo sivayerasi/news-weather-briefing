@@ -101,7 +101,7 @@
 - [x] "Degrade gracefully on dead source" guardrail enforced
 - [x] `cdk deploy` stands up the whole stack
 - [x] Lambda calls Claude via Bedrock `converse()` (no API key in code)
-- [ ] "Preview now" returns a briefing; daily email arrives
+- [x] "Preview now" returns a briefing; daily email arrives
 - [x] README with architecture diagram + deploy steps
 - [x] Code pushed to GitHub
 

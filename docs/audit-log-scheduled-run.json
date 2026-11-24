@@ -1,0 +1,29 @@
+{
+  "city": "kurnool",
+  "items_kept": 6,
+  "gaps": [],
+  "briefing": "Good morning! Here is your Tuesday briefing for Kurnool, 24 November 2026.\n\nWeather:\nSkies are overcast right now at 25.2 C with light winds. Today expect rain showers, with a high of 33.4 C and a low of 24.5 C, and an 82% chance of rain — carry an umbrella.\n\nNews:\n\nStocks:\n- Nvidia CEO Jensen Huang's return sent Wall Street surging, with investors reacting with near-disbelief at the market rally.\n- Wall Street soared on Huang's comeback to Nvidia as Treasury yields also ticked higher.\n- Sensex tumbled 1,484 points and Nifty fell below 25,400 amid heavy selling in banking and metal stocks.\n\nTechnology:\n- A new report highlights how technology outages are increasingly amplifying both operational and cyber risk for businesses.\n- NASA has released its latest Space Technology Graduate Research Opportunities for aspiring researchers.\n- L&T Technology Services launched SDVault.ai, an AI-powered platform bringing engineering intelligence to the software-defined vehicle development cycle.",
+  "trigger": "scheduled",
+  "interests": [
+    "stocks",
+    "technology"
+  ],
+  "sources": [
+    {
+      "ok": true,
+      "tool": "get_weather"
+    },
+    {
+      "ok": true,
+      "tool": "get_news"
+    },
+    {
+      "ok": true,
+      "tool": "filter_by_interest"
+    }
+  ],
+  "iterations": 3,
+  "pk": "USER#s***@gmail.com",
+  "email_status": "sent",
+  "sk": "AUDIT#2026-11-24T01:30:17.220580+00:00"
+}

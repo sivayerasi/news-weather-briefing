@@ -198,7 +198,7 @@ aws dynamodb scan --table-name news-weather-briefing-table --region us-east-1 \
   --query "sort_by(Items,&sk.S)[-3:].{when:sk.S,trigger:trigger.S,sources:sources.L[].M.tool.S,items_kept:items_kept.N,gaps:gaps.L[].S,email_status:email_status.S}"
 ```
 
-Each row records the trigger (`preview` or `scheduled`), the tools called and whether each worked, how many news items were kept, which sources were unavailable, the number of agent steps, the email status and the full briefing. A real example is in [`docs/audit-log-sample.json`](docs/audit-log-sample.json). Rows delete themselves after 90 days.
+Each row records the trigger (`preview` or `scheduled`), the tools called and whether each worked, how many news items were kept, which sources were unavailable, the number of agent steps, the email status and the full briefing. Two real examples are saved: [`docs/audit-log-scheduled-run.json`](docs/audit-log-scheduled-run.json) is the run started by the daily EventBridge alarm at 01:30 UTC (7:00 AM IST), with `email_status` `sent`; [`docs/audit-log-sample.json`](docs/audit-log-sample.json) is an earlier run. Email addresses are masked. Rows delete themselves after 90 days.
 
 ## Clean up
 
