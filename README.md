@@ -97,7 +97,7 @@ Model: `us.anthropic.claude-sonnet-4-6`. No API keys are used: Bedrock is called
 ## Project layout
 
 ```
-app.py, cdk.json           CDK entry point and settings (sender email, schedule time)
+app.py, cdk.json           CDK entry point and settings (schedule time)
 infra/stack.py             AWS resources
 lambda/briefing/           Lambda code
   handler.py                 routes, daily run, email sending (HTML + text)
@@ -126,14 +126,14 @@ Prerequisites: AWS credentials for the target account (for example `export AWS_P
    aws ses verify-email-identity --email-address you@example.com --region us-east-1
    ```
    Then click the link AWS emails you.
-2. **Set the sender and time** in `cdk.json`: `sender_email` (must be a verified address), `schedule_hour_utc` and `schedule_minute_utc`. They can also be passed with `-c`, for example `cdk deploy -c sender_email=you@example.com`.
+2. **Set the sender and time.** The send time is in `cdk.json` (`schedule_hour_utc`, `schedule_minute_utc`). The sender address is not stored in the repo. Pass a verified address when you deploy: `cdk deploy -c sender_email=you@example.com`, or put `{"sender_email": "you@example.com"}` in a local `cdk.context.json` (git-ignored) so you don't have to repeat it.
 3. **Deploy:**
    ```
    cdk deploy
    ```
 4. Open the `ApiUrl` output, enter a city and interests, and press Preview now. Press "Save for daily email" to receive the daily email.
 
-**Changing the send time:** the schedule is in UTC. India is UTC+5:30, so 7:00 AM IST is 01:30 UTC. Edit `cdk.json` and run `cdk deploy` again.
+**Changing the send time:** the schedule is in UTC. India is UTC+5:30, so 7:00 AM IST is 01:30 UTC. Edit `cdk.json` and run `cdk deploy` again (with the sender address, as above).
 
 **Test the email without waiting for the schedule:**
 ```
