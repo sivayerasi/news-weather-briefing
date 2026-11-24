@@ -107,6 +107,7 @@ lambda/briefing/           Lambda code
   tools.py                   get_weather, get_news, filter_by_interest
   guardrails.py              input validation, output scrubbing
   store.py                   DynamoDB settings and audit log
+scripts/deploy.sh, destroy.sh   deploy or remove the stack (with an account check and confirmation)
 web/index.html             the web page (plain HTML, CSS and JavaScript), deployed to S3
 tests/test_briefing.py     43 unit tests (no AWS needed)
 docs/                      project spec, sample audit log, screenshots, diagrams (PNG + SVG)
@@ -150,10 +151,11 @@ Complete the [Setup](#setup) first (tools, AWS login, `cdk bootstrap`, `.venv`).
    ```
    Then click the link AWS emails you.
 2. **Set the sender and time.** The send time is in `cdk.json` (`schedule_hour_utc`, `schedule_minute_utc`). The sender address is not stored in the repo. Pass a verified address when you deploy: `cdk deploy -c sender_email=you@example.com`, or put `{"sender_email": "you@example.com"}` in a local `cdk.context.json` (git-ignored) so you don't have to repeat it.
-3. **Deploy:**
+3. **Deploy.** The script checks your AWS login, shows the account it will use, runs the tests, asks for confirmation, and then runs `cdk deploy`:
    ```
-   cdk deploy
+   AWS_PROFILE=<profile> scripts/deploy.sh
    ```
+   Add `--yes` to skip the question. To set the sender for this deploy, use `SENDER_EMAIL=you@example.com AWS_PROFILE=<profile> scripts/deploy.sh`. The plain `cdk deploy` command also works.
 4. Open the `SiteUrl` output (the S3 page), enter a city and interests, and press Preview now. Press "Save for daily email" to receive the daily email.
 
 **Changing the send time:** the schedule is in UTC. India is UTC+5:30, so 7:00 AM IST is 01:30 UTC. Edit `cdk.json` and run `cdk deploy` again (with the sender address, as above).
@@ -201,8 +203,10 @@ Each row records the trigger (`preview` or `scheduled`), the tools called and wh
 ## Clean up
 
 ```
-cdk destroy
+AWS_PROFILE=<profile> scripts/destroy.sh
 ```
+
+The script shows the account and asks you to type the stack name before it deletes anything. The plain `cdk destroy` command also works.
 
 This removes every resource above, including the DynamoDB table and its saved settings and audit logs.
 
