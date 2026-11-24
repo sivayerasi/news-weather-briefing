@@ -1,0 +1,1798 @@
+{
+  "description": "Audit log rows for briefings made from the web page (Preview now). Exported from the DynamoDB table news-weather-briefing-table. Email addresses are masked. A non-empty gaps list means a source was unavailable and the briefing still arrived.",
+  "count": 61,
+  "runs": [
+    {
+      "run_at": "2026-11-22T15:08:01.353345+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Hyderabad",
+      "interests": [
+        "technology",
+        "cricket"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Here is your morning briefing!\n\n---\n\nGood morning, Hyderabad — here is everything you need to start your Sunday right.\n\nWeather: Mainly clear skies right now at 27.3 C, with today's high of 31.4 C and a low of 21.0 C; rain chance is just 2%.\n\nNews:\n- New imaging technology has uncovered previously unseen immune cell patterns in human tissue, opening new medical possibilities.\n- Researchers are exploring cosmology and near-infrared intensity mapping at the latest astrophysical sciences and technology colloquium.\n- A Kansas Reflector opinion piece reflects on a time when technology felt more like a benefit than a burden.\n- Al Jazeera revisits Sandpapergate and what it continues to reveal about the culture within Australian cricket.\n- England's Will Jacks has been ruled out of the ongoing T20 Australia tour due to injury."
+    },
+    {
+      "run_at": "2026-11-22T15:08:05.893617+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Hyderabad",
+      "interests": [
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": false,
+          "tool": "get_news"
+        }
+      ],
+      "items_kept": 0,
+      "gaps": [
+        "news"
+      ],
+      "iterations": 2,
+      "email_status": "n/a",
+      "briefing": "The news service is unavailable, so I won't retry it. Here is your morning briefing!\n\n---\n\nGood morning — here is your daily briefing for Hyderabad.\n\nWeather: Mainly clear skies right now at 27.3 C with light winds. Today's high is 31.4 C, low of 21.0 C, and just a 2% chance of rain.\n\nNews: News unavailable today."
+    },
+    {
+      "run_at": "2026-11-22T15:11:13.684708+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Hyderabad",
+      "interests": [
+        "technology",
+        "cricket"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning — here is your Sunday briefing for November 22, 2026.\n\nWeather: Hyderabad is currently mainly clear at 27.3 C with light winds; today's high is 31.4 C, low is 21.0 C, and the chance of rain is just 2%.\n\nNews:\n- New imaging technology has uncovered previously unseen immune cell patterns in human tissue, opening fresh medical research possibilities.\n- Commentators are raising fresh concerns about growing technology disruptions and their broader impact on society.\n- Al Jazeera revisits Sandpapergate and what it continues to reveal about the culture within Australian cricket.\n- England's Will Jacks has been ruled out of the ongoing T20 tour of Australia due to injury.\n- The 2nd T20I of the Australia vs England series is coming up — catch it live across streaming platforms and TV channels."
+    },
+    {
+      "run_at": "2026-11-22T15:11:18.386499+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Hyderabad",
+      "interests": [
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": false,
+          "tool": "get_news"
+        }
+      ],
+      "items_kept": 0,
+      "gaps": [
+        "news"
+      ],
+      "iterations": 2,
+      "email_status": "n/a",
+      "briefing": "Good morning from Hyderabad — here is what you need to know today.\n\nWeather: Currently mainly clear at 27.3°C with light winds. Today's high is 31.4°C, low of 21.0°C, and just a 2% chance of rain.\n\nNews: News unavailable today."
+    },
+    {
+      "run_at": "2026-11-22T15:12:23.845329+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "political"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what you need to know today.\n\nWeather: Weather unavailable today.\n\nNews:\n- Ken Paxton's political timeline is marked by election wins alongside a series of notable scandals.\n- An Arkansas commentary highlights reasons for optimism amid the state's current political climate.\n- COP31 climate talks are on the verge of collapse without a critical political agreement."
+    },
+    {
+      "run_at": "2026-11-22T15:13:02.383922+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Hyderabad",
+      "interests": [
+        "political"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Sunday briefing for Hyderabad, November 22, 2026.\n\nWeather: Skies are mainly clear right now at 27.3 C with light winds; today's high is 31.4 C, low is 21.0 C, and there is no chance of rain.\n\nNews:\n- Ken Paxton's political career has been marked by both election triumphs and a series of notable scandals, according to ABC News.\n- An Arkansas Advocate commentary highlights surprising bright spots worth appreciating in the state's current political landscape.\n- COP31 climate talks are at risk of collapse unless negotiators can reach a last-minute political agreement, Reuters reports."
+    },
+    {
+      "run_at": "2026-11-22T15:13:20.765971+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "political"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what you need to know today.\n\nWeather: Weather unavailable today.\n\nNews:\n- Ken Paxton's political timeline is marked by both election triumphs and a series of notable scandals.\n- An Arkansas Advocate commentary highlights reasons for optimism in the state's political landscape.\n- COP31 climate talks are on the verge of collapse without a critical political agreement, Reuters reports."
+    },
+    {
+      "run_at": "2026-11-22T15:13:38.005592+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Ananthapur",
+      "interests": [
+        "political"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Sunday briefing for Ananthapur.\n\nWeather: Skies are currently clear with a temperature of 25.7 C and light winds; today's high is 32.4 C, low is 20.4 C, with no chance of rain.\n\nNews:\n- Ken Paxton's political timeline is marked by both election triumphs and a series of notable scandals, per ABC News.\n- An Arkansas Advocate commentary highlights reasons to remain thankful amid the state's political landscape.\n- COP31 climate talks are at risk of collapsing without a decisive political deal, Reuters reports."
+    },
+    {
+      "run_at": "2026-11-22T15:14:02.465542+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Anantapur",
+      "interests": [
+        "political"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Anantapur — here is what you need to know to start your Sunday.\n\nWeather: Clear skies currently at 24.2 C with light winds; today's high of 30.5 C and low of 18.8 C with no chance of rain.\n\nNews:\n- Ken Paxton's political career has been marked by election wins alongside a string of notable scandals, per ABC News.\n- An Arkansas Advocate commentary highlights surprising bright spots worth appreciating in the state's political landscape.\n- COP31 climate negotiations are at risk of falling apart without a decisive political agreement, Reuters reports."
+    },
+    {
+      "run_at": "2026-11-22T15:14:23.483612+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Ananthapur",
+      "interests": [
+        "political"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Sunday briefing for Ananthapur, November 22, 2026.\n\nWeather: Skies are currently clear with a temperature of 25.7 C and light winds; today's high is 32.4 C, low is 20.4 C, with no chance of rain.\n\nNews:\n- Ken Paxton's political career has been marked by both election triumphs and a series of notable scandals, according to ABC News.\n- An Arkansas Advocate commentary highlights reasons to remain optimistic about the state of Arkansas politics.\n- COP31 climate talks are at risk of collapsing without a critical political deal, Reuters reports."
+    },
+    {
+      "run_at": "2026-11-22T15:28:30.243732+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "technology",
+        "cricket",
+        "politics"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 9,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what you need to know to start your Sunday.\n\nWeather: Clear skies right now at 27°C, with today's high of 32.5°C and a low of 20.9°C; no rain expected today, but heavy showers are likely by Tuesday (65% chance).\n\nNews:\n- IIT Madras unveiled a Sleep Study Facility, Autism Lab, and an E-cart Ambulance at a government health event.\n- Andhra Pradesh's Governor called on SSSIHL students to harness technology responsibly in pursuit of India's 2047 vision.\n- India and Pakistan are set to face off in the Asian Games 2026 cricket Gold Medal Match.\n- The ICC Men's Cricket World Cup 2027 points table has been updated with the latest standings.\n- Rajnath Singh accused Congress of dividing the nation along caste and religious lines."
+    },
+    {
+      "run_at": "2026-11-22T15:35:23.420558+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "tadipatri",
+      "interests": [
+        "politics"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Sunday briefing for Tadipatri, November 22, 2026.\n\nWeather: Skies are currently clear with a temperature of 26.8 C and light winds; today's high is 32.5 C, low is 20.9 C, with no chance of rain.\n\nNews:\n- Rajnath Singh accused Congress of playing politics by erecting caste and religion walls, per ANI News.\n- Cardinal Pizzaballa stated the Church brings hope to the Holy Land in areas where politics falls short, according to Vatican News.\n- Eurovision is expanding its blend of pop and politics to Asia, reports AFP."
+    },
+    {
+      "run_at": "2026-11-22T15:37:25.843063+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "tadipatri",
+      "interests": [
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what you need to know to start your Sunday right.\n\nWeather: Clear skies currently at 26.8 C with light winds; today's high is 32.5 C, low 20.9 C, with no chance of rain.\n\nNews:\n- IIT Madras launched a Sleep Study Facility, an Autism Lab, and an E-cart Ambulance, inaugurated by the Union Health Secretary.\n- The A.P. Governor called on SSSIHL students to harness technology responsibly in pursuit of India's 2047 vision.\n- ICMR marked a milestone by crossing 100 technology transfers and signing 20 new licensing agreements at the Health Research Summit."
+    },
+    {
+      "run_at": "2026-11-22T15:51:07.811188+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "technology",
+        "cricket"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 9,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Sunday briefing for Tadipatri, 22 November 2026.\n\nWeather: Clear skies right now at 26.6 C, with today's high of 32.5 C and low of 20.9 C, and no rain expected today.\n\nNews:\n- Local: Former Tadipatri municipal chairman JC Prabhakar steps up his attack on ex-MLA Peddareddy.\n- Local: TDP-YSRCP tensions in Tadipatri escalate with houses ransacked and vehicles torched during panchayat polls.\n- Local: An unruly mob attacked former MLA Kethireddy's house and set fire to vehicles, gripping the town in tension.\n- India vs Pakistan face off in the Asian Games 2026 cricket Gold Medal Match today.\n- The ICC Men's Cricket World Cup 2027 points table is updated with the latest standings.\n- The A.P. Governor urged SSSIHL students to use technology responsibly toward India's 2047 vision."
+    },
+    {
+      "run_at": "2026-11-23T03:10:24.172396+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "technology",
+        "cricket"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 9,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is everything you need to start your Monday right.\n\nWeather: Clear skies right now at 26 C, with today's high of 33 C and a low of 23 C; no rain expected today.\n\nNews:\n- Local: Former Tadipatri municipal chairman JC Prabhakar steps up his attack on ex-MLA Peddareddy.\n- Local: TDP-YSRCP tensions in Tadipatri escalate into clashes, with houses ransacked and vehicles torched during AP panchayat polls.\n- Local: An unruly mob attacked former MLA Kethireddy's house and set fire to vehicles, gripping the town in tension.\n- Bill Gates met with Andhra Pradesh officials to discuss the role of technology in governance and public health.\n- IND-A face PAK-A in Group B of the ongoing cricket series, with match analysis now available.\n- The ICC Men's Cricket World Cup 2027 points table has been updated with the latest standings."
+    },
+    {
+      "run_at": "2026-11-23T03:24:20.570287+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "technology",
+        "cricket"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what Monday, 23 November 2026 has in store for you.\n\nWeather: Clear skies right now at 26.6 C, with today's high of 33.3 C and a low of 22.7 C, and no rain expected today.\n\nNews:\n- The ICC Men's Cricket World Cup 2027 points table has been updated with the latest standings.\n- IND-A faced PAK-A in Match 8 of Group B, with analysis now available on Cricinfo.\n- Sheffield Shield round five squads have been announced across cricket.com.au.\n- Bill Gates visited Andhra Pradesh to discuss the role of technology in governance and public health.\n- A new EY report explores how businesses can unlock real returns on AI investments in the technology sector."
+    },
+    {
+      "run_at": "2026-11-23T04:01:32.330663+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "kurnool",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Monday briefing for Kurnool, 23 November 2026.\n\nWeather:\nSkies are mainly clear right now with a pleasant 28.4 C and light winds. Today turns overcast with a high of 33.2 C, a low of 23.2 C, and no rain expected. Heads up: rain chances rise sharply to 65% tomorrow and 73% on Wednesday, so keep an umbrella handy.\n\nNews:\n\nStocks:\n- Asian stock markets tumbled Monday as fears of an AI bubble weighed heavily on investor sentiment.\n- Asian stocks fell further after the U.S. moved to tighten chip export curbs, adding pressure to the region.\n- U.S. futures bounced modestly even as an AI-driven rout continued to rattle Asian markets.\n\nTechnology:\n- L&T Technology Services launched SDVault.ai, a new platform aimed at powering software-defined vehicles.\n- Bill Gates visited Andhra Pradesh to discuss the role of technology in governance and public health.\n- A new EY report explores how businesses can unlock measurable ROI from AI investments in the tech industry."
+    },
+    {
+      "run_at": "2026-11-23T04:34:21.000596+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what you need to know to start your Monday.\n\nWeather: Weather unavailable today.\n\nNews:\n\nStocks:\n- Asian stock markets tumbled amid growing fears that the AI sector may be in a bubble.\n- U.S. stocks closed mostly lower after Nvidia's earnings failed to reassure nervous investors.\n- U.S. futures edged up even as an AI-driven selloff continued to rattle Asian markets."
+    },
+    {
+      "run_at": "2026-11-23T04:35:04.020852+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Hyderabad",
+      "interests": [
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning — here is your Monday briefing for Hyderabad, 23 November 2026.\n\nWeather:\nSkies are overcast with a current temperature of 27.2 C and light winds at 5.1 km/h. Today's high is 31 C, low is 22 C, with a 0% chance of rain.\n\nNews:\n\nTechnology:\n- VinFast outlines its next-generation intelligent vehicle technology strategy, moving well beyond simple electrification.\n- L&T Technology Services has launched SDVault.ai, a new platform aimed at accelerating software-defined vehicle development.\n- Bill Gates visited Andhra Pradesh to discuss how technology can improve governance and public health outcomes."
+    },
+    {
+      "run_at": "2026-11-23T04:38:07.132667+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "cricket"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what Monday, 23 November 2026 has in store for you.\n\nWeather: Currently mainly clear at 29.3 C with light winds. Today's high is 33 C and low is 23 C, with no chance of rain — enjoy the dry day before a thunderstorm rolls in tomorrow (82% rain chance).\n\nNews:\n\nStocks:\n- Adani Energy Solutions is flagged as stock of the day, with targets at 1495, 1510, and 1525 after securing a 25-year, 1750 MW renewable energy deal with West Bengal.\n- Asian stock markets tumbled on Monday amid growing fears of an AI bubble.\n- U.S. stocks ended mostly lower as Nvidia's latest earnings failed to calm investor nerves.\n\nCricket:\n- The ICC Men's Cricket World Cup 2027 points table has been updated — check Cricbuzz for the latest standings.\n- Sheffield Shield round five squads have been announced across Australian states.\n- India A faced Pakistan A in their Group B clash, with match analysis now available on Cricinfo."
+    },
+    {
+      "run_at": "2026-11-23T04:39:33.112202+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "bangalore",
+      "interests": [
+        "it tech industries"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 9,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning, Bangalore — here is what you need to know to start your Monday.\n\nWeather:\nClear skies over Bangalore today with a current temperature of 24.8 C. Expect a high of 30.7 C and a low of 20.2 C, with no chance of rain.\n\nNews:\n\nIT:\n- IT exports have reached a record high, signaling strong sector momentum.\n- Gold prices are rebounding, though analysts question whether the recovery is sustainable.\n\nTech:\n- India is gaining appeal among global investors as a tech selloff deepens worldwide.\n- Asian stock markets are falling amid growing fears of an AI valuation bubble.\n- Defense and AI sectors are navigating a delicate balance between military needs and industry interests.\n\nIndustries:\n- AI's surging energy demands are pulling entire industries into the turbine supply chain.\n- A new report highlights the global industries still relying on child labor."
+    },
+    {
+      "run_at": "2026-11-23T04:40:39.311927+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "bangalore",
+      "interests": [
+        "technology sports circket"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 0,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning, Bangalore! Here is what you need to know to start your day.\n\nWeather:\nClear skies over Bangalore with a current temperature of 24.8 C. Today's high is 30.7 C and low is 20.2 C, with a 0% chance of rain.\n\nNews:\n\nTechnology:\n- Kazakhstan is reporting growth in domestic water-saving technology production.\n- Assistive technology is gaining attention as a tool to support independent living for persons with disabilities.\n- Experts explore how technology is transforming the modern laboratory of the future.\n\nSports:\n- Liverpool thrashed Manchester United 4-0 as Leny Yoro's early red card triggered a dramatic collapse under Pochettino.\n- The Aghoosh sports gala has kicked off in Lower Dir, celebrating local athletic talent.\n\nCricket:\n- The ICC Men's Cricket World Cup 2027 points table has been updated with the latest standings.\n- Round five Sheffield Shield squads have been announced as selections continue to take shape.\n- IND-A faced PAK-A in Match 8 of Group B, with detailed coverage and analysis available on Cricinfo."
+    },
+    {
+      "run_at": "2026-11-23T04:42:25.694104+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Kurnool",
+      "interests": [
+        "stocks technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning — here is your Monday briefing for Kurnool, 23 November 2026.\n\nWeather:\nCurrently partly cloudy at 29.3 C. Today's high is 33.2 C, low 23.2 C, with no chance of rain. Heads up: rain moves in Tuesday (65%) and continues Wednesday (73%).\n\nNews:\n\nStocks:\n- Adani Energy Solutions is a stock pick today after signing a 25-year, 1,750 MW renewable energy deal with West Bengal.\n- Asian stock markets tumbled on growing fears that the AI rally may be an inflating bubble.\n- US futures edged back up after an AI-driven rout shook Asian markets overnight.\n\nTechnology:\n- VinFast outlined its next-generation strategy, shifting focus from electrification toward intelligent, connected vehicles.\n- A new 2026 guide addresses how businesses in India can navigate technology disputes.\n- EY published a report on how technology companies can unlock measurable ROI from their AI investments."
+    },
+    {
+      "run_at": "2026-11-23T04:49:05.334436+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stock market",
+        "technology adfa adfadf adfdfa"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is your briefing for Monday, 23 November 2026.\n\nWeather:\nCurrently partly cloudy at 29.8 C with light winds. Today's high is 33 C and the low is 23 C, with no rain expected. Note that a thunderstorm is likely tomorrow (82% chance), so plan ahead.\n\nNews:\n\nStock market:\n- US stock futures are rallying this morning after a sharp AI-driven sell-off, with safe-haven assets retreating.\n- Asian stock markets fell overnight as fears of an AI bubble continue to weigh on investor sentiment.\n- Adani Energy Solutions is flagged as a stock to watch, after the company signed a 25-year, 1,750 MW renewable energy deal with West Bengal.\n\nTechnology adfa adfadf adfdfa:\nNo recent news."
+    },
+    {
+      "run_at": "2026-11-23T04:50:36.336810+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stock market"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is your Monday briefing for November 23, 2026.\n\nWeather: Currently partly cloudy at 29.8 C with light winds. Today's high is 33 C, low is 23 C, with no chance of rain. Note that a thunderstorm is likely tomorrow with an 82% rain chance.\n\nNews:\n\nStock Market:\n- US stock futures are rallying after a sharp AI-driven sell-off, with safe-haven assets pulling back.\n- Asian stock markets tumbled amid growing fears that the AI sector may be in a bubble.\n- Adani Energy Solutions is in focus after the company signed a 25-year, 1,750 MW renewable energy deal with West Bengal."
+    },
+    {
+      "run_at": "2026-11-23T05:00:00.096427+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what you need to know to start your Monday.\n\nWeather: Currently partly cloudy at 29.8 C with light winds. Today's high is 33 C, low is 22.7 C, with no chance of rain. Heads up: a thunderstorm is likely tomorrow with an 82% rain chance.\n\nNews:\n\nStocks:\n- Adani Energy Solutions is flagged as a stock to watch after signing a 25-year, 1,750 MW renewable energy deal with West Bengal.\n- Asian stock markets tumbled Monday as fears of an AI bubble weighed heavily on investor sentiment.\n- US futures edged higher as a rebound attempt follows the AI-driven rout rattling Asian markets.\n\nTechnology:\n- VinFast outlined its next-generation strategy, moving beyond electrification toward intelligent, connected vehicles.\n- Bill Gates visited Andhra Pradesh to discuss how technology can improve governance and public health outcomes.\n- A new EY report examines how companies in the technology sector can unlock measurable ROI from AI investments."
+    },
+    {
+      "run_at": "2026-11-23T05:00:08.297239+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Monday briefing for Tadipatri, November 23, 2026.\n\nWeather: Weather unavailable today.\n\nNews:\n\nStocks:\nNo recent news.\n\nTechnology:\n- Yardeni QuickTakes highlights a sector call covering Information Technology, Communication Services, and Financials.\n- Aviation Week rounds up the key technology stories and developments for the week of Nov. 23-27, 2026.\n- An expert warns that growing reliance on technology is eroding interpersonal trust and our ability to distinguish what is real."
+    },
+    {
+      "run_at": "2026-11-23T05:00:52.414550+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is your Monday briefing for November 23, 2026.\n\nWeather: Weather unavailable today.\n\nNews:\n\nStocks:\n- Asian stock markets tumbled amid growing fears that the AI boom may be an inflating bubble.\n- U.S. stocks closed mostly lower after Nvidia's latest earnings failed to calm investor nerves.\n- U.S. futures edged back up even as an AI-driven rout continued to rattle Asian markets.\n\nTechnology:\n- Yardeni's sector call highlights Information Technology, Communication Services, and Financials as key areas to watch this week.\n- Aviation Week rounds up the major technology developments expected between November 23 and 27.\n- An expert warns that growing reliance on technology is eroding interpersonal trust and the ability to distinguish what is real."
+    },
+    {
+      "run_at": "2026-11-23T05:00:59.416347+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Monday briefing for Tadipatri, November 23, 2026.\n\nWeather: Weather unavailable today.\n\nNews:\n\nStocks:\n- Asian stock markets tumbled on Monday as fears of an AI bubble continue to grow.\n- U.S. stocks closed mostly lower after Nvidia's earnings failed to calm investor nerves.\n- U.S. futures edged up even as an AI-driven rout rattled markets across Asia.\n\nTechnology:\n- Yardeni's sector call highlights Information Technology, Communication Services, and Financials as key areas to watch this week.\n- Aviation Week rounds up the major technology developments expected for the week of November 23-27.\n- An expert warns that growing reliance on technology is eroding interpersonal trust and the ability to distinguish what is real."
+    },
+    {
+      "run_at": "2026-11-23T05:01:07.816382+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is your Monday briefing for November 23, 2026.\n\nWeather: Weather unavailable today.\n\nNews:\n\nStocks:\n- Asian stock markets tumbled as fears of an AI bubble continue to grow (Al Jazeera).\n- U.S. stocks closed mostly lower after Nvidia's earnings failed to calm investor nerves (WSJ).\n- U.S. futures bounced back slightly even as an AI-driven rout rattled Asian markets (Reuters).\n\nTechnology:\n- Yardeni highlights key sector calls across Information Technology, Communication Services, and Financials this week (Yardeni QuickTakes).\n- Aviation Week rounds up the major technology stories to watch from November 23-27, 2026 (Aviation Week).\n- An expert warns that growing reliance on technology is eroding interpersonal trust and the ability to distinguish what is real (Phys.org)."
+    },
+    {
+      "run_at": "2026-11-23T05:01:40.476905+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Monday briefing for Tadipatri, November 23, 2026.\n\nWeather: Weather unavailable today.\n\nNews:\n\nStocks:\n- Asian stock markets tumbled amid growing fears of an AI bubble, per Al Jazeera.\n- U.S. stocks closed mostly lower after Nvidia's earnings failed to calm investor nerves, per WSJ.\n- U.S. futures bounced back slightly even as an AI-driven rout continued to rattle Asian markets, per Reuters.\n\nTechnology:\n- Yardeni QuickTakes highlights a sector call covering Information Technology, Communication Services, and Financials.\n- Aviation Week rounds up the key technology stories to watch for the week of November 23-27.\n- An expert warns that growing reliance on technology is eroding interpersonal trust and the ability to distinguish reality, per Phys.org."
+    },
+    {
+      "run_at": "2026-11-23T05:04:28.535182+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "kurnool",
+      "interests": [
+        "xyz"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Kurnool — here is your Monday briefing for November 23, 2026.\n\nWeather: Currently overcast at 30.2 C with light winds of 7.6 km/h. Today's high is 33.2 C, low is 23.2 C, with a 0% chance of rain.\n\nNews:\n\nxyz:\n- STONK (stonkfun.xyz) live price, market cap, and chart data are now available on Binance.\n- XYZ's Nov 2026 89.000 put option seasonal returns chart has been published on Yahoo Finance UK.\n- A new track titled \"and all i can say is ~ sunken colony\" featuring xyz is out now on YouTube."
+    },
+    {
+      "run_at": "2026-11-23T05:04:49.494973+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "kurnool",
+      "interests": [
+        "adfadfa"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": false,
+          "tool": "get_news"
+        }
+      ],
+      "items_kept": 0,
+      "gaps": [
+        "news"
+      ],
+      "iterations": 2,
+      "email_status": "n/a",
+      "briefing": "Since news is unavailable, I'll skip retrying and write the briefing now. Note that filter_by_interest cannot be called as get_news returned unavailable=true, so I'll proceed directly to composing the email.\n\nGood morning! Here is your daily briefing for Kurnool, India.\n\nWeather: Skies are overcast in Kurnool with a current temperature of 30.2 C and light winds at 7.6 km/h. Today's high is 33.2 C and the low is 23.2 C, with no chance of rain.\n\nNews:\n\nAdfadfa:\nNews unavailable today."
+    },
+    {
+      "run_at": "2026-11-23T05:17:04.633206+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is your Monday briefing for November 23, 2026.\n\nWeather: Skies are overcast with a current temperature of 30.8 C and light winds at 9.7 km/h. Today's high is 33.3 C and the low is 22.7 C, with no rain expected. Heads up: a thunderstorm is likely tomorrow with an 82% chance of rain.\n\nNews:\n\nStocks:\n- Adani Energy Solutions is flagged as a stock to watch after signing a 25-year, 1,750 MW renewable energy deal with West Bengal.\n- Asian stock markets fell sharply amid growing fears that the AI boom may be an inflating bubble.\n- Indian shares opened higher this morning, lifted by fresh foreign inflows as the AI trade sees a reversal.\n\nTechnology:\n- VinFast outlined its next-generation strategy, shifting focus from pure electrification toward intelligent, software-driven vehicles.\n- Bill Gates visited Andhra Pradesh to discuss how technology can improve governance and public health outcomes.\n- A new EY report examines how companies in the tech sector can unlock measurable ROI from their AI investments."
+    },
+    {
+      "run_at": "2026-11-23T05:17:13.395864+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Monday briefing for Tadipatri, 23 November 2026.\n\nWeather: Skies are overcast with a current temperature of 30.8 C and light winds at 9.7 km/h. Today's high is 33 C, low is 22.7 C, with no rain expected. Heads up: a thunderstorm is likely tomorrow with an 82% rain chance.\n\nNews:\n\nStocks:\n- Adani Energy Solutions is flagged as a stock to watch after signing a 25-year, 1,750 MW renewable energy deal with West Bengal.\n- Asian stock markets fell sharply amid growing fears that the AI rally may be an inflating bubble.\n- Indian shares opened higher this morning, lifted by fresh foreign inflows as the AI trade sees a reversal.\n\nTechnology:\n- VinFast outlined its next-generation intelligent vehicle strategy, moving beyond electrification into broader tech integration.\n- Bill Gates visited Andhra Pradesh to discuss the role of technology in improving governance and public health.\n- A new EY report explores how businesses in the tech sector can unlock measurable ROI from their AI investments."
+    },
+    {
+      "run_at": "2026-11-23T05:17:19.293581+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "zzqxjvk"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": false,
+          "tool": "get_news"
+        }
+      ],
+      "items_kept": 0,
+      "gaps": [
+        "news"
+      ],
+      "iterations": 2,
+      "email_status": "n/a",
+      "briefing": "News is unavailable (no retry per policy), so I'll now write the briefing directly. There's no need to call filter_by_interest since the news tool returned unavailable=true.\n\nGood morning! Here is your daily briefing for Tadipatri, Monday, November 23, 2026.\n\nWeather: Currently overcast at 30.8 C with light winds of 9.7 km/h. Today's high is 33.3 C and low is 22.7 C, with no chance of rain. Note that a thunderstorm is expected tomorrow (82% rain chance), so plan ahead.\n\nNews:\n\nZzqxjvk:\nNews unavailable today."
+    },
+    {
+      "run_at": "2026-11-23T05:40:36.122947+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "script",
+      "interests": [
+        "drop"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning — here is your Monday briefing for Script Dam, United States.\n\nWeather: Overcast and cold at -1.9C with winds at 17.6 km/h. Today's high is -1.8C, low is -3.8C, with a 0% chance of rain.\n\nNews:\n\nDrop:\n- Whisenhunt improves to 6-0 but the Beavers drop their dual meet to Wyoming at Gill.\n- The Chargers fall at home to the Jets in a Week 11 loss.\n- The Beacons drop their Sunday road battle against SIUE."
+    },
+    {
+      "run_at": "2026-11-23T06:08:38.710732+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "kurnool",
+      "interests": [
+        "education",
+        "sports",
+        "stock market"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 9,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Kurnool — here is everything you need to start your Monday, 23 November 2026.\n\nWeather:\nCurrently partly cloudy at 31.7 C with light winds at 9.8 km/h. Today's high is 33.2 C, low is 23.2 C, with no rain expected. Note that rain chances rise sharply to 65% tomorrow and 73% on Wednesday, so keep an umbrella handy from Tuesday onward.\n\nNews:\n\nEducation:\n- Kerala is forming a panel to add new nursing colleges and increase seats by 50 per cent.\n- Experts highlight how skill-based education can reshape India's learning landscape and boost the economy.\n- The government's National Academic Depository (NAD) initiative continues to advance digital academic record-keeping.\n\nSports:\n- CM Yadav inaugurates the first phase of a Rs 1,000 crore International Sports Complex in Bhopal.\n- AIDA CFCI-2 D&C organises a sports tournament aimed at promoting inclusion and leadership.\n\nStock Market:\n- Asian stock markets tumbled on Monday amid growing fears of an AI bubble bursting.\n- US stock futures rallied after the AI-driven selloff, with safe-haven assets falling in response.\n- Seoul activates its stock market stabilisation fund for the first time since the 2008 financial crisis."
+    },
+    {
+      "run_at": "2026-11-24T06:24:20.343932+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "kurnool",
+      "interests": [
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Tuesday briefing for Kurnool, November 24, 2026.\n\nWeather:\nCurrently light drizzle at 31.6 C with winds at 13.8 km/h. Today's high is 33.4 C, low is 24.5 C, with an 88% chance of rain showers — carry an umbrella.\n\nNews:\n\nTechnology:\n- Manoj Kumar Panda has been appointed to lead VECV's embedded technology, connectivity, and software-defined vehicle initiatives.\n- The US and Qatar have agreed to deepen bilateral cooperation across defence, trade, and technology sectors.\n- ICAR has inaugurated a Winter School focused on Black Soldier Fly-based feed technology at ICAR-CMFRI, Kochi."
+    },
+    {
+      "run_at": "2026-11-24T08:51:23.051320+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what you need to know to start your Tuesday, November 24.\n\nWeather: Heavy drizzle currently at 27.8 C with winds at 18.8 km/h. Today's high is 32.7 C, low 23.8 C, with a 92% chance of rain — keep that umbrella handy.\n\nNews:\n\nStocks:\n- Asian equities rebounded sharply as Jensen Huang's reinstatement at Nvidia sparked a broad AI-stock rally.\n- Asian stocks extended gains as Huang's return to Nvidia revived investor confidence in the AI trade.\n- Nvidia's market value surged by nearly $1 trillion as tech stocks rallied following Jensen Huang's comeback.\n\nTechnology:\n- India's Communications Minister Jyotiraditya Scindia declared that India is transitioning from a technology consumer to a technology creator.\n- AVEVA and PROSTEP expanded their technology partnership to strengthen digital continuity across industries.\n- ICAR launched a Winter School on Black Soldier Fly-based feed technology at ICAR-CMFRI, Kochi."
+    },
+    {
+      "run_at": "2026-11-24T08:51:28.918363+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is your Tuesday briefing.\n\nWeather: Weather unavailable today.\n\nNews:\n\nStocks:\n- Stocks surged after Jensen Huang was reinstated as Nvidia's CEO, per The New York Times.\n- Asian markets rallied as Huang's return to Nvidia reignited enthusiasm around the AI trade, Reuters reports.\n- Morningstar highlights five surprising stocks worth considering before the year comes to a close."
+    },
+    {
+      "run_at": "2026-11-24T09:34:18.627133+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is your Tuesday briefing for November 24, 2026.\n\nWeather: Light drizzle currently at 26.4 C with winds at 14.6 km/h. Today's high is 32.7 C, low 23.8 C, with a 92% chance of heavy drizzle — keep an umbrella handy.\n\nNews:\n\nStocks:\n- Trump reportedly earned up to $15 million on Nvidia stock following Jensen Huang's return.\n- Asian stocks rallied as Huang's comeback at Nvidia reignited enthusiasm around the AI trade.\n- Nvidia's market value surged by nearly $1 trillion, lifting broader tech stocks in its wake.\n\nTechnology:\n- India's Communications Minister Jyotiraditya Scindia declared India is transitioning from a technology consumer to a technology creator.\n- AVEVA and PROSTEP have expanded their technology partnership to strengthen digital continuity across industries."
+    },
+    {
+      "run_at": "2026-11-24T09:34:26.608891+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what you need to know to start your Tuesday.\n\nWeather: Weather unavailable today.\n\nNews:\n\nStocks:\n- Nvidia shares surged after Jensen Huang was reinstated as CEO, per The New York Times.\n- Asian markets rallied broadly as Huang's return reignited investor enthusiasm for the AI trade.\n- Morningstar highlights five under-the-radar stocks worth considering before the year closes out.\n\nTechnology:\n- Colorado has finalized rules on automated decision-making technology, bringing loan servicing and collections under its scope with a human-review framework.\n- Quinnipiac University's new M.S. in Instructional Design and Technology is drawing attention for its focus on modern learning tools.\n- The CPA Journal spotlights a fresh set of technology resources aimed at modernizing accounting education."
+    },
+    {
+      "run_at": "2026-11-24T09:36:47.484215+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is your Tuesday briefing for November 24, 2026.\n\nWeather: Drizzle currently at 26.4 C with winds at 14.6 km/h. Today's high is 32.7 C, low 23.8 C, with a 92% chance of heavy drizzle — keep an umbrella handy.\n\nNews:\n\nStocks:\n- Trump reportedly earned up to $15 million on Nvidia stock following Jensen Huang's return.\n- Asian stocks are rallying as Huang's comeback at Nvidia reignites enthusiasm around the AI trade.\n- Nvidia's market value surged by nearly $1 trillion, lifting broader tech stocks in its wake.\n\nTechnology:\n- India's Communications Minister Jyotiraditya Scindia declared that India is transitioning from a technology consumer to a technology creator.\n- AVEVA and PROSTEP have expanded their technology partnership to strengthen digital continuity across industries.\n- ICAR launched a Winter School on Black Soldier Fly-based feed technology at ICAR-CMFRI, Kochi."
+    },
+    {
+      "run_at": "2026-11-24T09:58:25.136420+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Tuesday briefing for Tadipatri, November 24, 2026.\n\nWeather: Currently drizzling at 26.8 C with light winds. Today's high is 32.7 C, low 23.8 C, with a 92% chance of heavy drizzle — keep an umbrella handy.\n\nNews:\n\nStocks:\n- Trump reportedly earned up to $15 million on Nvidia stock following Jensen Huang's return.\n- Asian stocks rallied sharply as Huang's comeback reignited investor enthusiasm for the AI trade.\n- Investors expressed astonishment as Huang's return sent stock markets rocketing higher.\n\nTechnology:\n- India's Communications Minister Scindia declared that India is transitioning from a technology consumer to a technology creator.\n- Amazon announced a $7.5 billion deal to acquire Decart's AI optimisation technology.\n- ICAR launched a Winter School on Black Soldier Fly-based feed technology at ICAR-CMFRI, Kochi."
+    },
+    {
+      "run_at": "2026-11-24T09:58:32.899272+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what you need to know to start your Tuesday.\n\nWeather: Weather unavailable today.\n\nNews:\n\nStocks:\n- Stocks surged after Jensen Huang was reinstated as Nvidia CEO, per The New York Times.\n- Asian markets rallied as Huang's return to Nvidia reignited enthusiasm around the AI trade.\n- Morningstar highlights five surprising stocks worth considering before the year wraps up.\n\nTechnology:\n- Colorado has finalized rules on automated decision-making technology, bringing servicing and collections under scope with a commercial reasonableness standard for human review.\n- Quinnipiac University's new M.S. in Instructional Design and Technology is drawing attention for its focus on emerging ed-tech skills.\n- The CPA Journal spotlights accounting education technology resources gaining traction in professional training."
+    },
+    {
+      "run_at": "2026-11-24T10:00:37.236267+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "kurnool",
+      "interests": [
+        "cricket"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 2,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Tuesday briefing for Kurnool.\n\nWeather: Light drizzle currently at 28.4 C with winds at 24.2 km/h. Today's high is 34 C, low is 24 C, with an 88% chance of rain showers — carry an umbrella.\n\nNews:\n\nCricket:\n- The Indian Softball Cricket League 2026 schedule, live scores, and results are now available on Cricbuzz.\n- Cricinfo has published a new feature on cricket grounds around the world."
+    },
+    {
+      "run_at": "2026-11-24T10:02:40.596085+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "kurnool",
+      "interests": [
+        "cricket",
+        "movies",
+        "poliltics",
+        "songs",
+        "technology",
+        "events",
+        "infomation technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        }
+      ],
+      "items_kept": 0,
+      "gaps": [],
+      "iterations": 2,
+      "email_status": "n/a",
+      "briefing": "Got the weather and news! Now let me filter the news by your interests."
+    },
+    {
+      "run_at": "2026-11-24T10:03:30.917608+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "kurnool",
+      "interests": [
+        "cricket",
+        "movies",
+        "poliltics",
+        "songs",
+        "technology"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        }
+      ],
+      "items_kept": 0,
+      "gaps": [],
+      "iterations": 2,
+      "email_status": "n/a",
+      "briefing": "Got the weather and news! Now I'll filter the news by the user's interests."
+    },
+    {
+      "run_at": "2026-11-24T10:06:20.334502+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "kurnool",
+      "interests": [
+        "sports",
+        "movies"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Tuesday briefing for Kurnool, 24 November 2026.\n\nWeather:\nCurrently light drizzle at 28.4 C with winds at 24.2 km/h. Today's high is 34 C, low is 24 C, with an 88% chance of rain showers — carry an umbrella.\n\nNews:\n\nSports:\n- Formula 1 is heading into a billion-dollar era, with average team valuations hitting $5.2 billion as the season nears its Qatar and Abu Dhabi finale.\n- Fulham defender Calvin Bassey is reportedly in talks over a new contract amid growing interest from Manchester United.\n- Australia is set to introduce laws protecting sports whistleblowers, following the cricket ball-tampering saga.\n\nMovies:\n- Vijay Sethupathi earned a spotlight at the Emmys while comedian Vir Das missed out on a win.\n- A new guide highlights the best time travel films worth owning on Blu-ray over streaming.\n- The Academy of Motion Picture Arts and Sciences is celebrating Home Movie Day with a Hollywood Home Movies showcase."
+    },
+    {
+      "run_at": "2026-11-24T10:07:28.115062+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "tadipatri",
+      "interests": [
+        "sports",
+        "movies"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 6,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what you need to know for Tuesday, November 24.\n\nWeather: Light drizzle currently at 27.1 C with winds at 9.2 km/h. Today's high is 32.7 C and low is 23.8 C, with a 92% chance of heavy drizzle — keep an umbrella handy.\n\nNews:\n\nSports:\n- Formula 1 teams are now valued at an average of $5.2 billion, signaling a booming billion-dollar business era as the season heads to Qatar and Abu Dhabi.\n- Fulham defender Calvin Bassey is in talks over a new contract amid reported interest from Manchester United.\n- Australia is proposing new laws to protect sports whistleblowers, prompted by the cricket ball-tampering saga.\n\nMovies:\n- A new guide highlights the best time travel movies worth owning on Blu-ray over streaming.\n- Vijay Sethupathi earned recognition at the Emmys while comedian Vir Das missed out on a win.\n- The Academy of Motion Picture Arts and Sciences is celebrating Home Movie Day with a Hollywood Home Movies showcase."
+    },
+    {
+      "run_at": "2026-11-24T10:20:40.081741+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology",
+        "cricket"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 9,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is everything you need to start your Tuesday, 24 November 2026.\n\nWeather: Heavy drizzle at 27.2 C with light winds of 9.9 km/h. Today's high is 32.7 C, low is 23.8 C, with a 92% chance of rain — carry an umbrella.\n\nNews:\n\nStocks:\n- US tech stocks rebounded as Wall Street rallied following Jensen Huang's return to Nvidia.\n- Trump reportedly made up to $15 million on Nvidia stock tied to Huang's comeback.\n- Asian stocks also surged as Huang's return reignited optimism around the AI trade.\n\nTechnology:\n- QNu Labs and NIELIT have partnered to launch quantum technology training programs in India.\n- India's Communications Minister Jyotiraditya Scindia declared India is shifting from a technology consumer to a technology creator.\n\nCricket:\n- Priyansh Arya earned high praise from a former cricketer after a record-breaking knock of 181.\n- The Indian Softball Cricket League 2026 schedule and live scores are now available on Cricbuzz."
+    },
+    {
+      "run_at": "2026-11-24T10:20:47.544797+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology",
+        "cricket",
+        "politics",
+        "health"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        }
+      ],
+      "items_kept": 0,
+      "gaps": [],
+      "iterations": 2,
+      "email_status": "n/a",
+      "briefing": "Now I have the news items. Let me filter them by the user's interests!"
+    },
+    {
+      "run_at": "2026-11-24T10:20:53.924030+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology",
+        "cricket",
+        "politics",
+        "health",
+        "movies",
+        "space"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        }
+      ],
+      "items_kept": 0,
+      "gaps": [],
+      "iterations": 2,
+      "email_status": "n/a",
+      "briefing": "Now I have the news items. Let me filter them by the user's interests right away!"
+    },
+    {
+      "run_at": "2026-11-24T10:25:48.420162+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology",
+        "cricket"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 9,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Tuesday briefing for Tadipatri, 24 November 2026.\n\nWeather:\nHeavy drizzle right now at 27.2 C with light winds of 9.9 km/h. Today's high is 32.7 C, low is 23.8 C, with a 92% chance of rain — carry an umbrella.\n\nNews:\n\nStocks:\n- Two major market debuts failed to provide a meaningful lift to broader stock indices.\n- Trump reportedly earned up to $15 million on Nvidia stock following Jensen Huang's return.\n- Asian stocks rallied as Huang's comeback at Nvidia reignited optimism around the AI trade.\n\nTechnology:\n- QNu Labs and NIELIT have partnered to launch quantum technology training programmes in India.\n- Communications Minister Jyotiraditya Scindia declared India is transitioning from a technology consumer to a technology creator.\n\nCricket:\n- Former cricketer heaps big praise on Priyansh Arya after his record-breaking knock of 181.\n- The Indian Softball Cricket League 2026 schedule, live scores, and results are now available.\n- The ICC Men's Cricket World Cup 2027 points table has been updated with the latest standings."
+    },
+    {
+      "run_at": "2026-11-24T10:26:00.800344+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology",
+        "cricket",
+        "politics",
+        "health"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 15,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is what Tuesday, 24 November 2026 has in store for you.\n\nWeather:\nHeavy drizzle currently at 27.2 C with light winds of 9.9 km/h. Today's high is 32.7 C, low is 23.8 C, with a 92% chance of rain — carry an umbrella.\n\nNews:\n\nStocks:\n- Two major market debuts failed to give stocks a meaningful lift, per WSJ.\n- Trump reportedly earned up to $15 million on Nvidia stock following Jensen Huang's return.\n- Asian stocks rallied as Huang's comeback at Nvidia reignited enthusiasm around the AI trade.\n\nTechnology:\n- QNu Labs and NIELIT have partnered to advance quantum technology training across India.\n- Communications Minister Jyotiraditya Scindia declared India is transitioning from a technology consumer to a technology creator.\n- ICAR launched a Winter School on Black Soldier Fly-based feed technology at ICAR-CMFRI, Kochi.\n\nCricket:\n- Priyansh Arya's record-breaking innings of 181 is drawing high praise from former cricketers.\n- The Indian Softball Cricket League 2026 schedule and live scores are now available on Cricbuzz.\n- The ICC Men's Cricket World Cup 2027 points table has been updated.\n\nPolitics:\n- Personal and constituency interests are reported to be overshadowing governance in Karnataka politics.\n- LSE Blogs examines the cultural politics of Hindutva through festivals and bulldozer controversies.\n- A Britannica overview highlights the interplay of politics, economy, and society in North Korea.\n\nHealth:\n- WHO held an EPI-WIN webinar on El Nino's global health impacts and emerging risks.\n- Frontline Magazine spotlights India's ongoing healthcare crisis, citing failures in quality and accountability.\n- Bajaj Integrated Health System has launched a new platform called Nivara."
+    },
+    {
+      "run_at": "2026-11-24T10:26:18.039281+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology",
+        "cricket",
+        "politics",
+        "health",
+        "movies",
+        "space",
+        "science"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 24,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri — here is everything you need to start your Tuesday, November 24, 2026.\n\nWeather:\nHeavy drizzle right now at 27.2 C with light winds of 9.9 km/h. Today's high is 32.7 C, low is 23.8 C, with a 92% chance of rain — carry an umbrella.\n\nNews:\n\nStocks:\n- Two major market debuts failed to give stocks a meaningful lift, per WSJ.\n- Trump reportedly earned up to $15 million on Nvidia stock following Jensen Huang's return.\n- Asian stocks rallied as Huang's comeback to Nvidia reignited enthusiasm around the AI trade.\n\nTechnology:\n- QNu Labs and NIELIT have partnered to advance quantum technology training across India.\n- Communications Minister Jyotiraditya Scindia declared India is transitioning from a technology consumer to a technology creator.\n- ICAR inaugurated a Winter School on Black Soldier Fly-based feed technology at ICAR-CMFRI, Kochi.\n\nCricket:\n- Priyansh Arya earns high praise from a former cricketer after a stunning record-breaking innings of 181.\n- The Indian Softball Cricket League 2026 is underway — schedules and live scores are now available on Cricbuzz.\n- The ICC Men's Cricket World Cup 2027 points table has been updated with the latest standings.\n\nPolitics:\n- Personal and constituency interests are increasingly shaping the dynamics of Karnataka politics, reports The Hindu.\n- LSE Blogs examines the cultural politics of Hindutva through the lens of festivals and bulldozer actions.\n- Britannica spotlights North Korea's political structure, economy, and society.\n\nHealth:\n- WHO hosted an EPI-WIN webinar on El Nino's global health impacts, emerging risks, and response strategies.\n- Frontline Magazine investigates India's deepening healthcare crisis, citing failures in quality and accountability.\n- Bajaj Integrated Health System has launched Nivara, a new integrated health initiative.\n\nMovies:\n- Vijay Sethupathi shone at the Emmys while Vir Das missed out on a win, reports Rediff.com.\n- The Academy of Motion Picture Arts and Sciences is celebrating Home Movie Day with a Hollywood Home Movies showcase.\n- A curated list of must-own time travel films on Blu-ray is making the rounds for movie collectors.\n\nSpace:\n- A Pakistani payload specialist, Zeeshan Ali, is set for a historic flight to China's space station, reports Al Jazeera.\n- DW.com reports he will become the first foreign astronaut to join a Chinese space mission.\n- India's government reaffirms its commitment to strengthening the nation's space sovereignty.\n\nScience:\n- BBC Science Focus Magazine's new issue explores the fundamental question of where gravity begins.\n- A volcanic eruption has extended Iwo Jima's beach, according to NASA Science.\n- Health and science reporter Nidhi Subbaraman has joined the Tradeoffs team to cover science journalism."
+    },
+    {
+      "run_at": "2026-11-24T10:26:36.501212+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology",
+        "cricket",
+        "politics",
+        "health",
+        "movies",
+        "space",
+        "science",
+        "business",
+        "education"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 30,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning from Tadipatri! Here is your briefing for Tuesday, 24 November 2026.\n\nWeather:\nHeavy drizzle right now at 27.2 C with light winds. Today's high is 32.7 C, low is 23.8 C, and there is a 92% chance of rain, so keep an umbrella handy.\n\nNews:\n\nStocks:\n- Two major market debuts failed to lift broader stock indices, per the WSJ.\n- Asian stocks rallied strongly as Jensen Huang's return to Nvidia reignited the AI trade.\n- Trump reportedly made up to $15 million on Nvidia stock following Huang's comeback.\n\nTechnology:\n- India's Communications Minister Scindia declared India has shifted from a technology consumer to a technology creator.\n- QNu Labs and NIELIT have partnered to advance quantum technology training across India.\n- ICAR inaugurated a winter school on Black Soldier Fly-based feed technology at ICAR-CMFRI.\n\nCricket:\n- Priyansh Arya earns high praise from a former cricketer after a record-breaking knock of 181.\n- The Indian Softball Cricket League 2026 schedule and live scores are now available on Cricbuzz.\n- The ICC Men's Cricket World Cup 2027 points table has been updated.\n\nPolitics:\n- Personal and constituency interests are reported to be overshadowing governance in Karnataka politics.\n- LSE Blogs examines the cultural politics of Hindutva through festivals and bulldozer actions.\n- Britannica publishes a detailed overview of North Korea's politics, economy, and society.\n\nHealth:\n- WHO hosted an EPI-WIN webinar on El Nino's global health impacts and emerging risks.\n- Frontline Magazine highlights India's ongoing healthcare crisis around quality and accountability.\n- Bajaj Integrated Health System has launched a new platform called Nivara.\n\nMovies:\n- Vijay Sethupathi shines at the Emmys while Vir Das misses out on a win.\n- The Academy of Motion Picture Arts and Sciences spotlights Home Movie Day and Hollywood Home Movies IV.\n- A curated list of must-own time travel movies on Blu-ray has been published.\n\nSpace:\n- Pakistan's Zeeshan Ali is set for a historic flight to China's space station as its first foreign astronaut.\n- A Pakistani payload specialist is confirmed as the first foreign astronaut on a Chinese space mission.\n- India's government publishes a report on strengthening the country's space sovereignty.\n\nScience:\n- NASA Science reports that a volcanic eruption has extended Iwo Jima's beach.\n- ICAR-CRIJAF has developed Vitapat-1, a nutritionally enriched variety for leafy vegetables and health drinks.\n- ELLE India covers the science behind achieving a good hair day.\n\nBusiness:\n- Asian stocks roared back as Jensen Huang's Nvidia return reignited the AI trade, reports Business Insider.\n- India's MCA, GSTN, and CBDT are being examined for potential to end repetitive business compliance burdens.\n- Dhruv Dhawan has taken on a new role as business owner for Amazon DSP at Amazon Ads.\n\nEducation:\n- Tamil Nadu plans to train 2,000 teachers in AI and ICT-based teaching methods.\n- Andhra Pradesh departments met in Mangalagiri to plan school education programmes for 2027-28.\n- The 2026 RSC Education Prize winners have been announced by the Royal Society of Chemistry."
+    },
+    {
+      "run_at": "2026-11-24T10:27:07.898911+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "Tadipatri",
+      "interests": [
+        "stocks",
+        "technology",
+        "cricket",
+        "politics",
+        "health",
+        "movies"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 18,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Tuesday briefing for Tadipatri, November 24, 2026.\n\nWeather:\nHeavy drizzle right now at 27.2 C with light winds. Today's high is 32.7 C, low is 23.8 C, and there is a 92% chance of rain — carry an umbrella.\n\nNews:\n\nStocks:\n- Two major market debuts failed to give stocks a meaningful lift, per WSJ.\n- Trump reportedly earned up to $15 million on Nvidia stock following Jensen Huang's return.\n- Asian stocks rallied as Huang's comeback at Nvidia reignited investor enthusiasm around the AI trade.\n\nTechnology:\n- QNu Labs and NIELIT have partnered to advance quantum technology training across India.\n- Communications Minister Jyotiraditya Scindia declared India is transitioning from a technology consumer to a technology creator.\n- ICAR inaugurated a Winter School on Black Soldier Fly-based feed technology at ICAR-CMFRI, Kochi.\n\nCricket:\n- Priyansh Arya's record-breaking 181 is drawing high praise from former cricketers.\n- The Indian Softball Cricket League 2026 schedule and live scores are now available on Cricbuzz.\n- The ICC Men's Cricket World Cup 2027 points table has been updated.\n\nPolitics:\n- Personal and constituency interests are reported to be overshadowing broader governance in Karnataka politics.\n- A new analysis examines the cultural politics of Hindutva through festivals and bulldozer actions.\n- Britannica profiles North Korea's political structure, economy, and society.\n\nHealth:\n- WHO hosted a webinar on El Nino's global health impacts, emerging risks, and emergency response.\n- Frontline Magazine highlights India's ongoing healthcare crisis, citing failures in quality and accountability.\n- Bajaj Integrated Health System has launched a new platform called Nivara.\n\nMovies:\n- Vijay Sethupathi shone at the Emmys while Vir Das missed out on a win.\n- The Academy of Motion Picture Arts and Sciences spotlighted Home Movie Day and Hollywood Home Movies IV.\n- A curated list of must-own time travel films on Blu-ray has been published for movie collectors."
+    },
+    {
+      "run_at": "2026-11-24T10:30:07.919231+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "tadipatri",
+      "interests": [
+        "sports",
+        "movies",
+        "space",
+        "nasa",
+        "isro",
+        "technology",
+        "songs",
+        "events"
+      ],
+      "sources": [
+        {
+          "ok": true,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 24,
+      "gaps": [],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your morning briefing for Tuesday, 24 November 2026, Tadipatri.\n\nWeather:\nCurrently heavy drizzle at 27.2 C with light winds of 9.9 km/h. Today's high is 32.7 C and low is 23.8 C, with a 92% chance of rain — carry an umbrella.\n\nNews:\n\nSports:\n- Formula 1 is racing toward a billion-dollar era, with average team valuations hitting $5.2 billion as the season heads to Qatar and Abu Dhabi.\n- Australia proposes new laws to protect sports whistleblowers following the cricket ball-tampering saga.\n- Indian tech hubs are playing a growing role in streaming and selling sport to global audiences.\n\nMovies:\n- A curated list of must-own time travel movies on Blu-ray is making rounds for film collectors.\n- Vijay Sethupathi shines at the Emmys while Vir Das misses out on a win.\n- The Academy of Motion Picture Arts and Sciences spotlights Home Movie Day and Hollywood Home Movies IV.\n\nSpace:\n- Pakistan's Zeeshan Ali is set for a historic flight to China's space station as its first foreign payload specialist.\n- India's government reaffirms its commitment to strengthening the country's space sovereignty.\n\nNASA:\n- A Progress cargo craft is counting down to its launch from Kazakhstan toward the International Space Station.\n- NASA has turned space telescope data into cosmic music, letting us hear what stars being born sound like.\n- NASA's Curiosity and Perseverance rovers have spotted unusual \"potato chip\" and \"ghostly rock\" formations on Mars.\n\nISRO:\n- ISRO chief confirms the Gaganyaan mission is on track, with the orbital module in active development.\n- Five PSLV missions have been handed to the L&T-HAL consortium, with the rocket getting ready.\n- A former ISRO chief has called for greater global cooperation in the space sector.\n\nTechnology:\n- QNu Labs and NIELIT have partnered to launch quantum technology training programs across India.\n- Communications Minister Jyotiraditya Scindia declares India has shifted from a technology consumer to a technology creator.\n\nSongs:\n- Billboard has ranked every track from the Grand Theft Auto VI album, now including deluxe bonus tracks.\n- Suno's new Visuals feature turns AI-generated songs into full music videos.\n- A nostalgic roundup of Shah Rukh Khan and Deepika Padukone's most sizzling song collaborations is trending.\n\nEvents:\n- Delhi Development Authority has opened 17 parks and 8 amphitheatres for public events, with schools able to book for just Rs 1."
+    },
+    {
+      "run_at": "2026-11-24T10:31:31.121484+00:00",
+      "pk": "USER#anonymous",
+      "trigger": "preview",
+      "city": "tadipatri, kurnool",
+      "interests": [
+        "tech"
+      ],
+      "sources": [
+        {
+          "ok": false,
+          "tool": "get_weather"
+        },
+        {
+          "ok": true,
+          "tool": "get_news"
+        },
+        {
+          "ok": true,
+          "tool": "filter_by_interest"
+        }
+      ],
+      "items_kept": 3,
+      "gaps": [
+        "weather"
+      ],
+      "iterations": 3,
+      "email_status": "n/a",
+      "briefing": "Good morning! Here is your Tuesday briefing for Tadipatri, Kurnool.\n\nWeather: Weather unavailable today.\n\nNews:\n\nTech:\n- PCWorld highlights early Black Friday tech deals with 10 items priced under $25, many at all-time lows.\n- Virginia Tech dominated UT Martin on both ends of the court in a commanding 85-41 victory.\n- Texas Tech eyes a title game berth as they head into a Thanksgiving showdown against TCU."
+    }
+  ]
+}
