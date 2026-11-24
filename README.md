@@ -2,7 +2,7 @@
 
 An AWS agent that emails a short morning briefing: real local weather plus news on your interests, grouped by interest. A web page lets you set your city, interests and email, and has a **Preview now** button that shows the briefing immediately, with a **Run details** box (tools used, items kept, skipped sources).
 
-Spec: [`docs/project-spec.md`](docs/project-spec.md) · Owner: Siva Yerasi
+Spec: [`docs/project-spec.md`](docs/project-spec.md) · Owner: Siva Yerasi · Repo: https://github.com/sivayerasi/news-weather-briefing
 
 ## How it works
 
@@ -110,16 +110,37 @@ tests/test_briefing.py     40 unit tests (no AWS needed)
 docs/                      project spec, sample audit log, screenshots, diagrams (PNG + SVG)
 ```
 
-## Run the tests
+## Setup
+
+Install these once:
+
+| Tool | Notes |
+|---|---|
+| Python 3 | Tested with 3.13. The Lambda runs Python 3.13 |
+| Node.js and the CDK CLI | `npm install -g aws-cdk`. Node 22 or 24 is recommended. Node 25 works but prints a warning (see Troubleshooting) |
+| AWS CLI | Logged in to the target account, for example `aws sso login --profile <profile>` then `export AWS_PROFILE=<profile>` |
+| AWS account | Region `us-east-1`, access to the Bedrock model Claude Sonnet 4.6 (`us.anthropic.claude-sonnet-4-6`), and a one-time `cdk bootstrap` |
+
+Then, in the project folder:
 
 ```
-python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+```
+
+The virtual environment must be named `.venv`, because `cdk.json` starts the app with `.venv/bin/python`.
+
+Check that everything works (no AWS needed):
+
+```
 .venv/bin/python -m pytest
 ```
 
+You should see `40 passed`.
+
 ## Deploy
 
-Prerequisites: AWS credentials for the target account (for example `export AWS_PROFILE=<profile>`), the CDK CLI, a bootstrapped account (`cdk bootstrap`), and Bedrock access to Claude Sonnet 4.6 in `us-east-1`.
+Complete the [Setup](#setup) first (tools, AWS login, `cdk bootstrap`, `.venv`).
 
 1. **Verify email addresses in SES.** SES is in sandbox mode, so the sender and every recipient must be verified. For each address:
    ```
@@ -146,6 +167,34 @@ This emails every saved user.
 - `cdk deploy` says credentials are expired but `aws sts get-caller-identity` works (SSO login): run `eval "$(aws configure export-credentials --profile <profile> --format env)"` first.
 - Node 25 prints a large "untested Node version" warning. It is harmless. Silence it with `export JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=1`.
 - The email is missing: check the Spam folder. Mail from a gmail.com sender sent through SES has no DKIM signature, so Gmail often filters the first one. Mark it "Not spam".
+
+## Demo
+
+Open the `ApiUrl` from the deploy output and follow these steps. Screenshots of steps 1 and 2 are in [Screenshots](#screenshots).
+
+1. **Normal briefing.** Enter a city (for example `Tadipatri`) and interests (`stocks, technology`), then press **Preview now**. After about 10 seconds the briefing appears. Open **Run details**: all three tools show a green tick.
+2. **Skipped source.** Tick **weather** under "Demo: simulate a dead source" and press Preview again. The briefing still arrives and says "Weather unavailable today". Run details shows a red cross on `get_weather` and "Unavailable today: weather". Try **news** the same way.
+3. **Input guardrail.** Type `Paris; DROP` as the city and press Preview. The page shows "city is missing or has invalid characters" and the AI is never called.
+4. **Max iterations and secret hiding.** These are hard to trigger on the live page, so run their tests:
+   ```
+   .venv/bin/python -m pytest -v -k "max_iterations or scrub"
+   ```
+   One test uses a fake AI that never stops asking for tools and checks that the loop ends at 6 rounds. The other two check that credential-like text becomes `[redacted]`.
+5. **Daily email.** Press **Save for daily email** with a verified address, then run the `aws lambda invoke` command from the Deploy section. The briefing arrives in the inbox (check Spam the first time). In normal use the daily schedule sends it at 7:00 AM IST.
+6. **Audit log.** See the next section.
+
+## View the audit log
+
+Every run writes one row to DynamoDB. To list the latest three:
+
+```
+aws dynamodb scan --table-name news-weather-briefing-table --region us-east-1 \
+  --filter-expression "begins_with(sk, :a)" \
+  --expression-attribute-values '{":a":{"S":"AUDIT#"}}' \
+  --query "sort_by(Items,&sk.S)[-3:].{when:sk.S,trigger:trigger.S,sources:sources.L[].M.tool.S,items_kept:items_kept.N,gaps:gaps.L[].S,email_status:email_status.S}"
+```
+
+Each row records the trigger (`preview` or `scheduled`), the tools called and whether each worked, how many news items were kept, which sources were unavailable, the number of agent steps, the email status and the full briefing. A real example is in [`docs/audit-log-sample.json`](docs/audit-log-sample.json). Rows delete themselves after 90 days.
 
 ## Clean up
 
