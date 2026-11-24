@@ -1,7 +1,6 @@
 """Lambda entry point.
 
-Routes (API Gateway HTTP API v2):
-  GET  /          -> index.html
+Routes (API Gateway HTTP API v2). The web page itself is hosted on S3 (see web/).
   POST /settings  -> save city/interests/email for the daily email
   POST /preview   -> run the agent now and return the briefing
 Scheduled (EventBridge): run the agent for every saved user and email it.
@@ -11,7 +10,6 @@ import html
 import json
 import logging
 import os
-from pathlib import Path
 
 import agent
 import guardrails
@@ -144,14 +142,6 @@ def lambda_handler(event, context):
 
     http = event.get("requestContext", {}).get("http", {})
     method, path = http.get("method", ""), http.get("path", "")
-
-    if method == "GET" and path == "/":
-        return _response(200, (Path(__file__).parent / "index.html").read_text(), "text/html")
-
-    if method == "GET" and path == "/config.js":
-        # The S3-hosted page loads its API address from this file. When the page is served
-        # by this Lambda it uses relative URLs, so an empty script is correct.
-        return _response(200, "", "application/javascript")
 
     if method == "POST" and path in ("/preview", "/settings"):
         try:

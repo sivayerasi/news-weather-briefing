@@ -126,7 +126,7 @@
 <script src="config.js"></script>
 <script>
 const $ = id => document.getElementById(id);
-// On S3, config.js sets window.API_URL. When served by the Lambda it is empty and relative URLs are used.
+// config.js (generated at deploy time) sets window.API_URL to the API Gateway address.
 const API = (window.API_URL || "").replace(/\/$/, "");
 
 function payload() {

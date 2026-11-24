@@ -92,8 +92,6 @@ class BriefingStack(Stack):
             ),
         )
         integration = integrations.HttpLambdaIntegration("LambdaIntegration", fn)
-        api.add_routes(path="/", methods=[apigw.HttpMethod.GET], integration=integration)
-        api.add_routes(path="/config.js", methods=[apigw.HttpMethod.GET], integration=integration)
         api.add_routes(path="/preview", methods=[apigw.HttpMethod.POST], integration=integration)
         api.add_routes(path="/settings", methods=[apigw.HttpMethod.POST], integration=integration)
 
@@ -104,13 +102,13 @@ class BriefingStack(Stack):
             targets=[targets.LambdaFunction(fn)],
         )
 
-        # index.html comes from the Lambda folder (single source of truth). config.js is
-        # generated here so the page knows the API address.
+        # web/index.html is uploaded as it is. config.js is generated here so the page
+        # knows the API address.
         s3deploy.BucketDeployment(
             self, "DeploySite",
             destination_bucket=site,
             sources=[
-                s3deploy.Source.asset("lambda/briefing", exclude=["*", "!index.html"]),
+                s3deploy.Source.asset("web"),
                 s3deploy.Source.data("config.js", f"window.API_URL = '{api.url}';"),
             ],
             cache_control=[s3deploy.CacheControl.no_cache()],

@@ -43,7 +43,7 @@ Inside one run, the Lambda code and the AI take turns. The AI asks for a tool, t
 - **News retry:** if a topic's request fails or comes back empty, it is retried once after a short pause.
 - **Interests:** separate with commas. Words without a comma count as one interest, so `stock market` stays one interest. The page warns if you type several words with no comma.
 - **Email:** sent as HTML (bold headings, bullet lists) with a plain-text fallback.
-- **Page hosting:** `index.html` is hosted on S3 (static website hosting). A generated `config.js` tells the page the API address, and the API allows only that S3 address through CORS. The Lambda still serves a copy of the page at `GET /` as a fallback.
+- **Page hosting:** the web page (`web/index.html`) is hosted on S3 (static website hosting). A generated `config.js` tells the page the API address, and the API allows only that S3 address through CORS.
 - **Settings:** one saved setting per email address. Saving again with the same email overwrites it.
 
 ## Reliability and guardrails
@@ -72,12 +72,10 @@ Weather source skipped (simulated). The briefing still arrives with "Weather una
 
 ## API
 
-The page is served from S3 (the `SiteUrl` stack output) and calls the API (the `ApiUrl` output). All API routes are handled by the same Lambda, which also keeps a copy of the page at `GET /`.
+The page is served from S3 (the `SiteUrl` stack output) and calls the API (the `ApiUrl` output). The API has two routes, both handled by the same Lambda.
 
 | Route | Purpose | Body (JSON) |
 |---|---|---|
-| `GET /` | A copy of the web page (the main page is on S3) | none |
-| `GET /config.js` | Empty script, so the Lambda-served copy of the page works without an API address | none |
 | `POST /preview` | Run the agent now and return the briefing | `city`, `interests`, optional `email`, optional `simulate_failure` (`["weather"]`, `["news"]`) |
 | `POST /settings` | Save city, interests and email for the daily email | `city`, `interests`, `email` |
 
@@ -109,7 +107,7 @@ lambda/briefing/           Lambda code
   tools.py                   get_weather, get_news, filter_by_interest
   guardrails.py              input validation, output scrubbing
   store.py                   DynamoDB settings and audit log
-  index.html                 the web page (plain HTML, CSS and JavaScript); deployed to S3
+web/index.html             the web page (plain HTML, CSS and JavaScript), deployed to S3
 tests/test_briefing.py     40 unit tests (no AWS needed)
 docs/                      project spec, sample audit log, screenshots, diagrams (PNG + SVG)
 ```

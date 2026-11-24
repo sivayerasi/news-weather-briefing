@@ -195,8 +195,9 @@ def _event(method, path, body=None):
     return {"requestContext": {"http": {"method": method, "path": path}}, "body": json.dumps(body) if body is not None else None}
 
 
-def test_handler_serves_page_and_404():
-    assert handler.lambda_handler(_event("GET", "/"), None)["statusCode"] == 200
+def test_handler_unknown_routes_return_404():
+    # The page is hosted on S3, so the API has no GET routes.
+    assert handler.lambda_handler(_event("GET", "/"), None)["statusCode"] == 404
     assert handler.lambda_handler(_event("GET", "/x"), None)["statusCode"] == 404
 
 
@@ -351,9 +352,3 @@ def test_news_us_edition_used_when_regional_request_errors(monkeypatch):
         return SAMPLE_RSS
     monkeypatch.setattr(tools, "_http_text", fake)
     assert tools.get_news(["stocks"], country_code="IN")["items"]
-
-
-def test_config_js_is_empty_javascript():
-    out = handler.lambda_handler(_event("GET", "/config.js"), None)
-    assert out["statusCode"] == 200 and out["body"] == ""
-    assert out["headers"]["Content-Type"] == "application/javascript"
