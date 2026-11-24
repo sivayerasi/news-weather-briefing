@@ -351,3 +351,9 @@ def test_news_us_edition_used_when_regional_request_errors(monkeypatch):
         return SAMPLE_RSS
     monkeypatch.setattr(tools, "_http_text", fake)
     assert tools.get_news(["stocks"], country_code="IN")["items"]
+
+
+def test_config_js_is_empty_javascript():
+    out = handler.lambda_handler(_event("GET", "/config.js"), None)
+    assert out["statusCode"] == 200 and out["body"] == ""
+    assert out["headers"]["Content-Type"] == "application/javascript"

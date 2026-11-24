@@ -148,6 +148,11 @@ def lambda_handler(event, context):
     if method == "GET" and path == "/":
         return _response(200, (Path(__file__).parent / "index.html").read_text(), "text/html")
 
+    if method == "GET" and path == "/config.js":
+        # The S3-hosted page loads its API address from this file. When the page is served
+        # by this Lambda it uses relative URLs, so an empty script is correct.
+        return _response(200, "", "application/javascript")
+
     if method == "POST" and path in ("/preview", "/settings"):
         try:
             raw = event.get("body") or "{}"

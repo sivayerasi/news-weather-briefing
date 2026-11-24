@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Daily Briefing</title>
+<link rel="icon" href="data:,">
 <style>
   :root {
     --bg: #eef2f9; --card: #ffffff; --text: #1d2433; --muted: #6a7488;
@@ -122,8 +123,11 @@
 </main>
 <footer>Unauthenticated demo. Briefings are written by Claude on AWS Bedrock.</footer>
 
+<script src="config.js"></script>
 <script>
 const $ = id => document.getElementById(id);
+// On S3, config.js sets window.API_URL. When served by the Lambda it is empty and relative URLs are used.
+const API = (window.API_URL || "").replace(/\/$/, "");
 
 function payload() {
   const fail = [];
@@ -151,7 +155,7 @@ function setStatus(text, kind, spinner) {
 async function post(path, busyText) {
   setBusy(true); setStatus(busyText, "", true);
   try {
-    const r = await fetch(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload()) });
+    const r = await fetch(API + path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload()) });
     const data = await r.json();
     if (!r.ok) { setStatus(data.error || "Request failed", "err"); return null; }
     setStatus("", "");

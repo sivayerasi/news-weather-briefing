@@ -7,6 +7,8 @@ from aws_cdk import (
     aws_events_targets as targets,
     aws_iam as iam,
     aws_lambda as _lambda,
+    aws_s3 as s3,
+    aws_s3_deployment as s3deploy,
 )
 from constructs import Construct
 
@@ -64,9 +66,34 @@ class BriefingStack(Stack):
             resources=[f"arn:aws:ses:{self.region}:{self.account}:identity/*"],
         ))
 
-        api = apigw.HttpApi(self, "BriefingApi", api_name=f"{PREFIX}-api")
+        # Static site: S3 website hosting for index.html. The page holds no secrets,
+        # so the bucket is public-read (website endpoints cannot use a private bucket).
+        site = s3.Bucket(
+            self, "SiteBucket",
+            bucket_name=f"{PREFIX}-site-{self.account}",
+            website_index_document="index.html",
+            public_read_access=True,
+            block_public_access=s3.BlockPublicAccess(
+                block_public_acls=True, ignore_public_acls=True,
+                block_public_policy=False, restrict_public_buckets=False,
+            ),
+            removal_policy=RemovalPolicy.DESTROY,
+            auto_delete_objects=True,
+        )
+
+        # The page is on a different origin than the API, so the API must allow it (CORS).
+        api = apigw.HttpApi(
+            self, "BriefingApi", api_name=f"{PREFIX}-api",
+            cors_preflight=apigw.CorsPreflightOptions(
+                allow_origins=[site.bucket_website_url],
+                allow_methods=[apigw.CorsHttpMethod.GET, apigw.CorsHttpMethod.POST, apigw.CorsHttpMethod.OPTIONS],
+                allow_headers=["Content-Type"],
+                max_age=Duration.days(1),
+            ),
+        )
         integration = integrations.HttpLambdaIntegration("LambdaIntegration", fn)
         api.add_routes(path="/", methods=[apigw.HttpMethod.GET], integration=integration)
+        api.add_routes(path="/config.js", methods=[apigw.HttpMethod.GET], integration=integration)
         api.add_routes(path="/preview", methods=[apigw.HttpMethod.POST], integration=integration)
         api.add_routes(path="/settings", methods=[apigw.HttpMethod.POST], integration=integration)
 
@@ -77,5 +104,18 @@ class BriefingStack(Stack):
             targets=[targets.LambdaFunction(fn)],
         )
 
+        # index.html comes from the Lambda folder (single source of truth). config.js is
+        # generated here so the page knows the API address.
+        s3deploy.BucketDeployment(
+            self, "DeploySite",
+            destination_bucket=site,
+            sources=[
+                s3deploy.Source.asset("lambda/briefing", exclude=["*", "!index.html"]),
+                s3deploy.Source.data("config.js", f"window.API_URL = '{api.url}';"),
+            ],
+            cache_control=[s3deploy.CacheControl.no_cache()],
+        )
+
+        CfnOutput(self, "SiteUrl", value=site.bucket_website_url)
         CfnOutput(self, "ApiUrl", value=api.url or "")
         CfnOutput(self, "TableName", value=table.table_name)

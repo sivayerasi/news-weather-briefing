@@ -1,6 +1,6 @@
 # Daily News + Weather Briefing
 
-An AWS agent that emails a short morning briefing: real local weather plus news on your interests, grouped by interest. A web page lets you set your city, interests and email, and has a **Preview now** button that shows the briefing immediately, with a **Run details** box (tools used, items kept, skipped sources).
+An AWS agent that emails a short morning briefing: real local weather plus news on your interests, grouped by interest. A web page (hosted on S3) lets you set your city, interests and email, and has a **Preview now** button that shows the briefing immediately, with a **Run details** box (tools used, items kept, skipped sources).
 
 Spec: [`docs/project-spec.md`](docs/project-spec.md) · Owner: Siva Yerasi · Repo: https://github.com/sivayerasi/news-weather-briefing
 
@@ -12,7 +12,8 @@ The same picture as a GitHub-rendered diagram:
 
 ```mermaid
 flowchart LR
-    U[Browser: index.html] -->|GET /, POST /preview, POST /settings| API[API Gateway HTTP API]
+    S3[S3 bucket: index.html + config.js] -->|loads page| U[Browser]
+    U -->|POST /preview, POST /settings| API[API Gateway HTTP API]
     EB[EventBridge daily cron] --> L
     API --> L[Lambda: briefing agent]
     L <-->|converse + tool use| BR[Bedrock: Claude Sonnet 4.6]
@@ -42,6 +43,7 @@ Inside one run, the Lambda code and the AI take turns. The AI asks for a tool, t
 - **News retry:** if a topic's request fails or comes back empty, it is retried once after a short pause.
 - **Interests:** separate with commas. Words without a comma count as one interest, so `stock market` stays one interest. The page warns if you type several words with no comma.
 - **Email:** sent as HTML (bold headings, bullet lists) with a plain-text fallback.
+- **Page hosting:** `index.html` is hosted on S3 (static website hosting). A generated `config.js` tells the page the API address, and the API allows only that S3 address through CORS. The Lambda still serves a copy of the page at `GET /` as a fallback.
 - **Settings:** one saved setting per email address. Saving again with the same email overwrites it.
 
 ## Reliability and guardrails
@@ -70,11 +72,12 @@ Weather source skipped (simulated). The briefing still arrives with "Weather una
 
 ## API
 
-All routes are served by the same Lambda, so the page and the API share one URL (the `ApiUrl` stack output).
+The page is served from S3 (the `SiteUrl` stack output) and calls the API (the `ApiUrl` output). All API routes are handled by the same Lambda, which also keeps a copy of the page at `GET /`.
 
 | Route | Purpose | Body (JSON) |
 |---|---|---|
-| `GET /` | The web page | none |
+| `GET /` | A copy of the web page (the main page is on S3) | none |
+| `GET /config.js` | Empty script, so the Lambda-served copy of the page works without an API address | none |
 | `POST /preview` | Run the agent now and return the briefing | `city`, `interests`, optional `email`, optional `simulate_failure` (`["weather"]`, `["news"]`) |
 | `POST /settings` | Save city, interests and email for the daily email | `city`, `interests`, `email` |
 
@@ -87,7 +90,8 @@ Stack name `news-weather-briefing`, region `us-east-1`.
 | Resource | Name | Notes |
 |---|---|---|
 | Lambda | `news-weather-briefing-agent` | 256 MB, 120 s timeout |
-| API Gateway HTTP API | `news-weather-briefing-api` | Unauthenticated (demo) |
+| API Gateway HTTP API | `news-weather-briefing-api` | Unauthenticated (demo). CORS allows only the S3 website address |
+| S3 bucket | `news-weather-briefing-site-<account id>` | Static website hosting for `index.html` and `config.js`. Public read (the page has no secrets). Emptied and deleted with the stack |
 | DynamoDB table | `news-weather-briefing-table` | On-demand. Keys: `pk` = `USER#<email>`, `sk` = `SETTINGS` or `AUDIT#<timestamp>`. TTL on `expires_at` (audit rows). Deleted with the stack. |
 | EventBridge rule | `news-weather-briefing-daily` | Default 01:30 UTC = 7:00 AM IST |
 | IAM role (Lambda) | auto-named | DynamoDB read/write on its own table, `bedrock:InvokeModel` on Claude Sonnet 4.6 only (this action also authorizes `converse()`), `ses:SendEmail` |
@@ -105,7 +109,7 @@ lambda/briefing/           Lambda code
   tools.py                   get_weather, get_news, filter_by_interest
   guardrails.py              input validation, output scrubbing
   store.py                   DynamoDB settings and audit log
-  index.html                 the web page (plain HTML, CSS and JavaScript)
+  index.html                 the web page (plain HTML, CSS and JavaScript); deployed to S3
 tests/test_briefing.py     40 unit tests (no AWS needed)
 docs/                      project spec, sample audit log, screenshots, diagrams (PNG + SVG)
 ```
@@ -152,7 +156,7 @@ Complete the [Setup](#setup) first (tools, AWS login, `cdk bootstrap`, `.venv`).
    ```
    cdk deploy
    ```
-4. Open the `ApiUrl` output, enter a city and interests, and press Preview now. Press "Save for daily email" to receive the daily email.
+4. Open the `SiteUrl` output (the S3 page), enter a city and interests, and press Preview now. Press "Save for daily email" to receive the daily email.
 
 **Changing the send time:** the schedule is in UTC. India is UTC+5:30, so 7:00 AM IST is 01:30 UTC. Edit `cdk.json` and run `cdk deploy` again (with the sender address, as above).
 
@@ -170,7 +174,7 @@ This emails every saved user.
 
 ## Demo
 
-Open the `ApiUrl` from the deploy output and follow these steps. Screenshots of steps 1 and 2 are in [Screenshots](#screenshots).
+Open the `SiteUrl` from the deploy output and follow these steps. Screenshots of steps 1 and 2 are in [Screenshots](#screenshots).
 
 1. **Normal briefing.** Enter a city (for example `Tadipatri`) and interests (`stocks, technology`), then press **Preview now**. After about 10 seconds the briefing appears. Open **Run details**: all three tools show a green tick.
 2. **Skipped source.** Tick **weather** under "Demo: simulate a dead source" and press Preview again. The briefing still arrives and says "Weather unavailable today". Run details shows a red cross on `get_weather` and "Unavailable today: weather". Try **news** the same way.
@@ -211,4 +215,4 @@ This removes every resource above, including the DynamoDB table and its saved se
 - The daily run scans the whole table for saved settings, which is fine for a demo but not for many users.
 - SES sandbox: only verified addresses can receive email.
 - Tools use Python's built-in `urllib` instead of `httpx`, so the Lambda needs no bundled packages. The web requests are the same.
-- The page is served by the Lambda. Hosting `index.html` on S3 (the spec's stretch goal) was not done.
+- The S3 website address is HTTP only (no padlock), and the bucket is public-read. The page contains no secrets. For HTTPS and a private bucket, put CloudFront in front of the bucket.
